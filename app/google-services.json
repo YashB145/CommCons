@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "610797997069",
+    "firebase_url": "https://commcons-default-rtdb.firebaseio.com",
+    "project_id": "commcons",
+    "storage_bucket": "commcons.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610797997069:android:1412796de2249dc7285944",
+        "android_client_info": {
+          "package_name": "com.org.commcons"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610797997069-e311us3q2oqn0ha811dhamsf9gt9ekob.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgl-yUu3P2rLk8A8sQb-ShPKc6RMUKlwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "610797997069-e311us3q2oqn0ha811dhamsf9gt9ekob.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
