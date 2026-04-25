@@ -28,7 +28,7 @@ class VolunteerDashboardActivity : AppCompatActivity() {
         }
 
         binding.btnViewMap.setOnClickListener {
-            Toast.makeText(this, "Map - Coming Soon!", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MapActivity::class.java))
         }
 
         binding.btnChat.setOnClickListener {

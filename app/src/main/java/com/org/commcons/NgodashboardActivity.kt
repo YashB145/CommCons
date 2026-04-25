@@ -31,7 +31,7 @@ class NgoDashboardActivity : AppCompatActivity() {
         }
 
         binding.btnViewAnalytics.setOnClickListener {
-            Toast.makeText(this, "Analytics - Coming Soon!", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MapActivity::class.java))
         }
 
         binding.btnVolunteers.setOnClickListener {
