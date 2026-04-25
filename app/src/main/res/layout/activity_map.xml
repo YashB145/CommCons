@@ -31,62 +31,11 @@
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:gravity="center"/>
-
     </LinearLayout>
 
-    <!-- Legend -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#FFFFFF"
-        android:padding="8dp"
-        android:gravity="center">
-
-        <View
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:background="#F44336"
-            android:layout_marginEnd="4dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="High"
-            android:textSize="12sp"
-            android:textColor="#333333"
-            android:layout_marginEnd="16dp"/>
-
-        <View
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:background="#FF9800"
-            android:layout_marginEnd="4dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Medium"
-            android:textSize="12sp"
-            android:textColor="#333333"
-            android:layout_marginEnd="16dp"/>
-
-        <View
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:background="#4CAF50"
-            android:layout_marginEnd="4dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Low"
-            android:textSize="12sp"
-            android:textColor="#333333"/>
-
-    </LinearLayout>
-
-    <!-- Map -->
-    <fragment
-        android:id="@+id/mapFragment"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <!-- Free OpenStreetMap WebView -->
+    <WebView
+        android:id="@+id/webViewMap"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

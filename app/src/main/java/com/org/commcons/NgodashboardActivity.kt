@@ -31,7 +31,7 @@ class NgoDashboardActivity : AppCompatActivity() {
         }
 
         binding.btnViewAnalytics.setOnClickListener {
-            startActivity(Intent(this, MapActivity::class.java))
+            startActivity(Intent(this, NgoAnalyticsActivity::class.java))
         }
 
         binding.btnVolunteers.setOnClickListener {

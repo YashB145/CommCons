@@ -36,9 +36,8 @@ class VolunteerDashboardActivity : AppCompatActivity() {
         }
 
         binding.btnProfile.setOnClickListener {
-            Toast.makeText(this, "Profile - Coming Soon!", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, VolunteerProfileActivity::class.java))
         }
-
         binding.btnLogout.setOnClickListener {
             auth.signOut()
             val i = Intent(this, LoginActivity::class.java)

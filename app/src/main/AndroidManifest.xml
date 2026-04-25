@@ -39,6 +39,8 @@
         <activity android:name=".ChatActivity"/>
         <activity android:name=".ChatListActivity"/>
         <activity android:name=".MapActivity"/>
+        <activity android:name=".VolunteerProfileActivity"/>
+        <activity android:name=".NgoAnalyticsActivity"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
