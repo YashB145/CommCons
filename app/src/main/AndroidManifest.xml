@@ -34,7 +34,8 @@
         <activity android:name=".CreateTaskActivity"/>
         <activity android:name=".TaskListActivity"/>
         <activity android:name=".TaskDetailActivity"/>
-
+        <activity android:name=".ChatActivity"/>
+        <activity android:name=".ChatListActivity"/>
     </application>
 
 </manifest>

@@ -27,7 +27,7 @@ class NgoDashboardActivity : AppCompatActivity() {
         }
 
         binding.btnCreateSurvey.setOnClickListener {
-            Toast.makeText(this, "Create Survey - Coming Soon!", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, ChatListActivity::class.java))
         }
 
         binding.btnViewAnalytics.setOnClickListener {

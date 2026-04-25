@@ -32,7 +32,7 @@ class VolunteerDashboardActivity : AppCompatActivity() {
         }
 
         binding.btnChat.setOnClickListener {
-            Toast.makeText(this, "Chat - Coming Soon!", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, ChatListActivity::class.java))
         }
 
         binding.btnProfile.setOnClickListener {
