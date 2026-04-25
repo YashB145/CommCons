@@ -22,7 +22,9 @@ class VolunteerDashboardActivity : AppCompatActivity() {
         loadUserData()
 
         binding.btnViewTasks.setOnClickListener {
-            Toast.makeText(this, "Tasks - Coming Soon!", Toast.LENGTH_SHORT).show()
+            val i = Intent(this, TaskListActivity::class.java)
+            i.putExtra("isNgo", false)
+            startActivity(i)
         }
 
         binding.btnViewMap.setOnClickListener {
@@ -39,9 +41,9 @@ class VolunteerDashboardActivity : AppCompatActivity() {
 
         binding.btnLogout.setOnClickListener {
             auth.signOut()
-            val intent = Intent(this, LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
+            val i = Intent(this, LoginActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(i)
             finish()
         }
     }

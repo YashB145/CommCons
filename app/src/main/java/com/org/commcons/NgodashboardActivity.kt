@@ -1,6 +1,6 @@
 package com.org.commcons
 
-import android.content.Intent
+import android.content.Intent   // ← add this if missing
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +23,7 @@ class NgoDashboardActivity : AppCompatActivity() {
         loadUserData()
 
         binding.btnCreateTask.setOnClickListener {
-            Toast.makeText(this, "Create Task - Coming Soon!", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, CreateTaskActivity::class.java))
         }
 
         binding.btnCreateSurvey.setOnClickListener {
@@ -35,9 +35,10 @@ class NgoDashboardActivity : AppCompatActivity() {
         }
 
         binding.btnVolunteers.setOnClickListener {
-            Toast.makeText(this, "Volunteers - Coming Soon!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, TaskListActivity::class.java)
+            intent.putExtra("isNgo", true)
+            startActivity(intent)
         }
-
         binding.btnLogout.setOnClickListener {
             auth.signOut()
             val intent = Intent(this, LoginActivity::class.java)

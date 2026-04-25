@@ -31,6 +31,9 @@
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".NgoDashboardActivity"/>
         <activity android:name=".VolunteerDashboardActivity"/>
+        <activity android:name=".CreateTaskActivity"/>
+        <activity android:name=".TaskListActivity"/>
+        <activity android:name=".TaskDetailActivity"/>
 
     </application>
 
