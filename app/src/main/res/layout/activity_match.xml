@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:background="#F5F5F5">
 
-    <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,42 +33,34 @@
             android:gravity="center"/>
     </LinearLayout>
 
-    <!-- Subtitle -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tasks ranked by how well they match your skills"
+        android:text="Tasks ranked by your skills"
         android:textSize="13sp"
         android:textColor="#888888"
         android:gravity="center"
         android:padding="12dp"
         android:background="#FFFFFF"/>
 
-    <!-- Loading -->
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone"/>
-
-    <!-- Empty state -->
+    <!-- VISIBLE by default so we always see status -->
     <TextView
         android:id="@+id/tvStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="Loading..."
         android:textSize="15sp"
         android:textColor="#888888"
         android:gravity="center"
         android:padding="32dp"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMatches"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="8dp"
-        android:clipToPadding="false"/>
+        android:clipToPadding="false"
+        android:visibility="gone"/>
 
 </LinearLayout>

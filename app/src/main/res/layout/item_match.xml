@@ -106,7 +106,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tap to view & accept →"
+            android:text="Tap to view and accept →"
             android:textSize="12sp"
             android:textColor="#1565C0"
             android:gravity="end"

@@ -128,6 +128,12 @@ class ChatActivity : AppCompatActivity() {
             "user2Id" to receiverId,
             "user2Name" to receiverName
         )
+        // Notify receiver of new message
+        NotificationHelper.sendNotificationToUser(
+            recipientUid = receiverId,
+            title = "New message from $currentUserName",
+            body = lastMessage
+        )
         db.collection("chatSummaries").document(chatId).set(summary)
     }
 }

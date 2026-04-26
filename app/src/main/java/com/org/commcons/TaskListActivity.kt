@@ -63,19 +63,25 @@ class TaskListActivity : AppCompatActivity() {
                 }
             )
         } else {
-            repo.getOpenTasks(
-                onSuccess = { tasks ->
+            // Volunteers see BOTH open tasks AND in_progress tasks
+            val db = com.google.firebase.firestore.FirebaseFirestore.getInstance()
+            db.collection("tasks")
+                .whereIn("status", listOf("open", "in_progress"))
+                .orderBy("createdAt", com.google.firebase.firestore.Query.Direction.DESCENDING)
+                .addSnapshotListener { snapshot, error ->
+                    if (error != null) {
+                        Toast.makeText(this, "Error: ${error.message}", Toast.LENGTH_LONG).show()
+                        return@addSnapshotListener
+                    }
+                    val tasks = snapshot?.documents?.mapNotNull {
+                        it.toObject(Task::class.java)
+                    } ?: emptyList()
                     adapter.updateTasks(tasks)
                     binding.tvEmpty.visibility =
                         if (tasks.isEmpty()) View.VISIBLE else View.GONE
-                },
-                onFailure = { error ->
-                    Toast.makeText(this, "Error: $error", Toast.LENGTH_LONG).show()
                 }
-            )
         }
     }
-
     private fun acceptTask(task: Task) {
         val uid = auth.currentUser?.uid ?: return
         repo.acceptTask(task.id, uid,

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.org.commcons.databinding.ActivityLoginBinding
+import android.os.Build
 
 class LoginActivity : AppCompatActivity() {
 
@@ -15,7 +16,15 @@ class LoginActivity : AppCompatActivity() {
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
 
+    // Request notification permission for Android 13+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        requestPermissions(
+            arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 1
+        )
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -40,6 +49,9 @@ class LoginActivity : AppCompatActivity() {
                             binding.progressBar.visibility = View.GONE
                             val role = doc.getString("role") ?: "volunteer"
                             navigateByRole(role)
+                            // Save FCM token
+                            val uid = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+                            NotificationHelper.saveFcmToken(uid)
                         }
                         .addOnFailureListener {
                             binding.progressBar.visibility = View.GONE

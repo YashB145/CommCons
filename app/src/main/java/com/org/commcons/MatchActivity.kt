@@ -1,5 +1,6 @@
 package com.org.commcons
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,70 +25,82 @@ class MatchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMatchBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        Toast.makeText(this, "Match screen loaded", Toast.LENGTH_SHORT).show()
         binding.btnBack.setOnClickListener { finish() }
+
+        showStatus("Loading tasks...")
         loadMatches()
     }
 
-    private fun loadMatches() {
-        binding.progressBar.visibility = View.VISIBLE
-        binding.tvStatus.text = "Finding best matches..."
+    private fun showStatus(msg: String) {
+        binding.tvStatus.text = msg
+        binding.tvStatus.visibility = View.VISIBLE
+        binding.rvMatches.visibility = View.GONE
+    }
 
-        // Step 1: Get current volunteer's skills
+    private fun showList() {
+        binding.tvStatus.visibility = View.GONE
+        binding.rvMatches.visibility = View.VISIBLE
+    }
+
+    private fun loadMatches() {
+        // Step 1: get volunteer skills
         db.collection("users").document(uid).get()
             .addOnSuccessListener { userDoc ->
-                val volunteerName = userDoc.getString("name") ?: "Volunteer"
                 val volunteerSkills = (userDoc.get("skills") as? List<*>)
                     ?.mapNotNull { it?.toString()?.lowercase()?.trim() }
                     ?: emptyList()
 
-                if (volunteerSkills.isEmpty()) {
-                    binding.progressBar.visibility = View.GONE
-                    binding.tvStatus.text = "Add skills to your profile first!"
-                    binding.tvStatus.visibility = View.VISIBLE
-                    return@addOnSuccessListener
-                }
+                showStatus("Finding tasks for skills: ${
+                    if (volunteerSkills.isEmpty()) "none set"
+                    else volunteerSkills.joinToString(", ")
+                }")
 
-                // Step 2: Get all open tasks
-                db.collection("tasks")
-                    .whereEqualTo("status", "open")
-                    .get()
+                // Step 2: get ALL tasks (not just open, to debug)
+                db.collection("tasks").get()
                     .addOnSuccessListener { snapshot ->
-                        val tasks = snapshot.documents
-                            .mapNotNull { it.toObject(Task::class.java) }
+                        val allTasks = snapshot.documents.mapNotNull {
+                            it.toObject(Task::class.java)
+                        }
 
-                        // Step 3: Score each task by skill match
-                        val scored = tasks.mapNotNull { task ->
+                        if (allTasks.isEmpty()) {
+                            showStatus("No tasks found in database at all")
+                            return@addOnSuccessListener
+                        }
+
+                        // Step 3: filter open + score
+                        val openTasks = allTasks.filter { it.status == "open" }
+
+                        if (openTasks.isEmpty()) {
+                            showStatus("No open tasks found. Total tasks: ${allTasks.size}")
+                            return@addOnSuccessListener
+                        }
+
+                        val scored = openTasks.map { task ->
                             val taskSkills = task.requiredSkills
                                 .map { it.lowercase().trim() }
-                            val matchCount = taskSkills.count { it in volunteerSkills }
                             val score = when {
-                                taskSkills.isEmpty() -> 50 // no skill req = open to all
-                                matchCount == 0 -> 0
-                                else -> (matchCount.toFloat() / taskSkills.size * 100).toInt()
+                                taskSkills.isEmpty() -> 50
+                                volunteerSkills.isEmpty() -> 30
+                                else -> {
+                                    val matched = taskSkills
+                                        .count { it in volunteerSkills }
+                                    if (matched == 0) 20
+                                    else (matched.toFloat() / taskSkills.size * 100).toInt()
+                                }
                             }
-                            if (score > 0) Pair(task, score) else null
+                            Pair(task, score)
                         }.sortedByDescending { it.second }
 
-                        binding.progressBar.visibility = View.GONE
-
-                        if (scored.isEmpty()) {
-                            binding.tvStatus.text =
-                                "No matching tasks found for skills: ${volunteerSkills.joinToString(", ")}"
-                            binding.tvStatus.visibility = View.VISIBLE
-                        } else {
-                            binding.tvStatus.visibility = View.GONE
-                            setupRecyclerView(scored, volunteerSkills)
-                        }
+                        showList()
+                        setupRecyclerView(scored, volunteerSkills)
                     }
                     .addOnFailureListener { e ->
-                        binding.progressBar.visibility = View.GONE
-                        Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                        showStatus("Firestore error: ${e.message}")
                     }
             }
             .addOnFailureListener { e ->
-                binding.progressBar.visibility = View.GONE
-                Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                showStatus("Could not load user profile: ${e.message}")
             }
     }
 
@@ -113,7 +126,9 @@ class MatchActivity : AppCompatActivity() {
                         .inflate(R.layout.item_match, parent, false)
                 )
 
-            override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+            override fun onBindViewHolder(
+                holder: RecyclerView.ViewHolder, position: Int
+            ) {
                 val (task, score) = matches[position]
                 holder as MatchViewHolder
 
@@ -127,22 +142,27 @@ class MatchActivity : AppCompatActivity() {
                     }
                 )
 
-                val taskSkills = task.requiredSkills.map { it.lowercase().trim() }
+                val taskSkills = task.requiredSkills
+                    .map { it.lowercase().trim() }
                 val matched = taskSkills.filter { it in volunteerSkills }
-                val unmatched = taskSkills.filter { it !in volunteerSkills }
 
                 holder.tvSkills.text = "Required: ${
-                    if (taskSkills.isEmpty()) "None" else taskSkills.joinToString(", ")
+                    if (taskSkills.isEmpty()) "Open to all"
+                    else taskSkills.joinToString(", ")
                 }"
                 holder.tvMatchedSkills.text = "✓ You have: ${
-                    if (matched.isEmpty()) "—" else matched.joinToString(", ")
+                    if (matched.isEmpty()) "—"
+                    else matched.joinToString(", ")
                 }"
                 holder.tvPriority.text = "Priority: ${task.priority.uppercase()}"
-                holder.tvLocation.text = "📍 ${task.locationName.ifEmpty { "Location TBD" }}"
+                holder.tvLocation.text = "📍 ${
+                    task.locationName.ifEmpty { "Location TBD" }
+                }"
 
                 holder.itemView.setOnClickListener {
-                    val intent = android.content.Intent(
-                        this@MatchActivity, TaskDetailActivity::class.java
+                    val intent = Intent(
+                        this@MatchActivity,
+                        TaskDetailActivity::class.java
                     )
                     intent.putExtra("taskId", task.id)
                     intent.putExtra("userRole", "volunteer")

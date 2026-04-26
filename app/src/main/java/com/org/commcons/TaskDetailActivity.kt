@@ -17,6 +17,7 @@ class TaskDetailActivity : AppCompatActivity() {
     private val repo = TaskRepository()
     private var taskId = ""
     private var userRole = ""
+    private var currentUserName = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,7 +102,18 @@ class TaskDetailActivity : AppCompatActivity() {
                 onSuccess = {
                     repo.updateTaskStatus(task.id, "in_progress", {
                         Toast.makeText(this, "✅ Task accepted!", Toast.LENGTH_SHORT).show()
+                        // Notify NGO that task was accepted
+                        NotificationHelper.sendNotificationToUser(
+                            recipientUid = task.ngoId,
+                            title = "Task Accepted!",
+                            body = "${currentUserName} accepted your task: ${task.title}"
+                        )
                         loadTask()
+                        val uid = auth.currentUser?.uid ?: ""
+                        FirebaseFirestore.getInstance().collection("users").document(uid).get()
+                            .addOnSuccessListener { doc ->
+                                currentUserName = doc.getString("name") ?: "A volunteer"
+                            }
                     }, { e -> showError(e) })
                 },
                 onFailure = { e ->

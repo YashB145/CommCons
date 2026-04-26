@@ -45,6 +45,9 @@ class VolunteerDashboardActivity : AppCompatActivity() {
             startActivity(i)
             finish()
         }
+        binding.btnSmartMatch.setOnClickListener {
+            startActivity(Intent(this, MatchActivity::class.java))
+        }
     }
 
     private fun loadUserData() {
