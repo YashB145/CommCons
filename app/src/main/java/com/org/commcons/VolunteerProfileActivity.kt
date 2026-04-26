@@ -82,10 +82,11 @@ class VolunteerProfileActivity : AppCompatActivity() {
             "skills" to skills
         )
 
-        db.collection("users").document(uid).update(updates)
+        db.collection("users").document(uid)
+            .set(updates, com.google.firebase.firestore.SetOptions.merge())
             .addOnSuccessListener {
                 binding.btnSave.isEnabled = true
-                Toast.makeText(this, "Profile saved!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Profile saved! ✓", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { e ->
                 binding.btnSave.isEnabled = true

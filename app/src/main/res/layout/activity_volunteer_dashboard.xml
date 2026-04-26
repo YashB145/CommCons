@@ -173,6 +173,16 @@
                 android:backgroundTint="#6A1B9A"
                 android:textColor="#FFFFFF"/>
 
+            <Button
+                android:id="@+id/btnSmartMatch"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="🎯 Smart Match"
+                android:backgroundTint="#2E7D32"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:layout_marginTop="8dp"/>
+
         </GridLayout>
 
     </LinearLayout>

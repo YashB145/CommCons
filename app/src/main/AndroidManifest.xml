@@ -41,6 +41,7 @@
         <activity android:name=".MapActivity"/>
         <activity android:name=".VolunteerProfileActivity"/>
         <activity android:name=".NgoAnalyticsActivity"/>
+        <activity android:name=".MatchActivity"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
