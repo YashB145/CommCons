@@ -15,6 +15,9 @@ class VolunteerDashboardActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Check for pending notifications
+        val uid = auth.currentUser?.uid ?: ""
+        NotificationHelper.checkAndShowNotifications(this, uid)
         super.onCreate(savedInstanceState)
         binding = ActivityVolunteerDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)

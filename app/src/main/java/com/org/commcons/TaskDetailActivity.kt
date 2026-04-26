@@ -98,29 +98,33 @@ class TaskDetailActivity : AppCompatActivity() {
         binding.btnAcceptTask.setOnClickListener {
             val uid = auth.currentUser?.uid ?: return@setOnClickListener
             binding.btnAcceptTask.isEnabled = false
-            repo.acceptTask(task.id, uid,
-                onSuccess = {
-                    repo.updateTaskStatus(task.id, "in_progress", {
-                        Toast.makeText(this, "✅ Task accepted!", Toast.LENGTH_SHORT).show()
-                        // Notify NGO that task was accepted
-                        NotificationHelper.sendNotificationToUser(
-                            recipientUid = task.ngoId,
-                            title = "Task Accepted!",
-                            body = "${currentUserName} accepted your task: ${task.title}"
-                        )
-                        loadTask()
-                        val uid = auth.currentUser?.uid ?: ""
-                        FirebaseFirestore.getInstance().collection("users").document(uid).get()
-                            .addOnSuccessListener { doc ->
-                                currentUserName = doc.getString("name") ?: "A volunteer"
-                            }
-                    }, { e -> showError(e) })
-                },
-                onFailure = { e ->
-                    binding.btnAcceptTask.isEnabled = true
-                    showError(e)
+
+            db.collection("users").document(uid).get()
+                .addOnSuccessListener { userDoc ->
+                    currentUserName = userDoc.getString("name") ?: "A volunteer"
+
+                    repo.acceptTask(task.id, uid,
+                        onSuccess = {
+                            repo.updateTaskStatus(task.id, "in_progress", {
+                                Toast.makeText(this, "✅ Task accepted!", Toast.LENGTH_SHORT).show()
+                                NotificationHelper.sendNotificationToUser(
+                                    recipientUid = task.ngoId,
+                                    title = "Task Accepted!",
+                                    body = "$currentUserName accepted: ${task.title}"
+                                )
+                                loadTask()
+                            }, { e -> showError(e) })
+                        },
+                        onFailure = { e ->
+                            binding.btnAcceptTask.isEnabled = true
+                            showError(e)
+                        }
+                    )
                 }
-            )
+                .addOnFailureListener {
+                    binding.btnAcceptTask.isEnabled = true
+                    showError("Could not load user profile")
+                }
         }
 
         binding.btnMarkDone.setOnClickListener {

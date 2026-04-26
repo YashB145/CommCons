@@ -1,46 +1,80 @@
 package com.org.commcons
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
+import androidx.core.app.NotificationCompat
 import com.google.firebase.firestore.FirebaseFirestore
-import org.json.JSONObject
-import java.net.URL
-import javax.net.ssl.HttpsURLConnection
 
 object NotificationHelper {
 
     private val db = FirebaseFirestore.getInstance()
 
-    // Send notification to a specific user by their UID
     fun sendNotificationToUser(
         recipientUid: String,
         title: String,
         body: String
     ) {
-        // Get recipient's FCM token from Firestore
-        db.collection("users").document(recipientUid).get()
-            .addOnSuccessListener { doc ->
-                val token = doc.getString("fcmToken") ?: return@addOnSuccessListener
-                sendFCMNotification(token, title, body)
-            }
-    }
-
-    private fun sendFCMNotification(token: String, title: String, body: String) {
-        // Save notification to Firestore (reliable delivery)
         val notification = hashMapOf(
-            "token" to token,
+            "recipientUid" to recipientUid,
             "title" to title,
             "body" to body,
             "sentAt" to System.currentTimeMillis(),
-            "delivered" to false
+            "read" to false
         )
         db.collection("notifications").add(notification)
     }
 
-    // Save FCM token when user logs in
     fun saveFcmToken(uid: String) {
         com.google.firebase.messaging.FirebaseMessaging.getInstance().token
             .addOnSuccessListener { token ->
                 db.collection("users").document(uid)
-                    .update("fcmToken", token)
+                    .set(mapOf("fcmToken" to token),
+                        com.google.firebase.firestore.SetOptions.merge())
             }
+    }
+
+    fun checkAndShowNotifications(context: Context, uid: String) {
+        db.collection("notifications")
+            .whereEqualTo("recipientUid", uid)
+            .whereEqualTo("read", false)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                for (doc in snapshot.documents) {
+                    val title = doc.getString("title") ?: continue
+                    val body = doc.getString("body") ?: ""
+                    showLocalNotification(context, title, body)
+                    doc.reference.update("read", true)
+                }
+            }
+    }
+
+    private fun showLocalNotification(context: Context, title: String, body: String) {
+        val channelId = "commcons_channel"
+        val notificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                "CommCons Notifications",
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                enableLights(true)
+                enableVibration(true)
+            }
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        val notification = NotificationCompat.Builder(context, channelId)
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setContentTitle(title)
+            .setContentText(body)
+            .setAutoCancel(true)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .build()
+
+        notificationManager.notify(System.currentTimeMillis().toInt(), notification)
     }
 }

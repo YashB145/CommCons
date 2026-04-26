@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.org.commcons.databinding.ActivityCreateTaskBinding
 
 class CreateTaskActivity : AppCompatActivity() {
@@ -37,7 +38,6 @@ class CreateTaskActivity : AppCompatActivity() {
                 else -> "low"
             }
 
-
             val skills = if (skillsRaw.isEmpty()) emptyList()
             else skillsRaw.split(",").map { it.trim() }
 
@@ -58,14 +58,11 @@ class CreateTaskActivity : AppCompatActivity() {
 
             repo.createTask(task,
                 onSuccess = {
-
                     binding.progressBar.visibility = View.GONE
-
+                    binding.btnSubmitTask.isEnabled = true
                     Toast.makeText(this, "✅ Task created!", Toast.LENGTH_SHORT).show()
-
-                    finish()
-                    // Notify all volunteers about new task
                     notifyAllVolunteers(title)
+                    finish()
                 },
                 onFailure = { error ->
                     binding.progressBar.visibility = View.GONE
@@ -73,22 +70,22 @@ class CreateTaskActivity : AppCompatActivity() {
                     Toast.makeText(this, "Error: $error", Toast.LENGTH_LONG).show()
                 }
             )
-            private fun notifyAllVolunteers(taskTitle: String) {
-                val db = com.google.firebase.firestore.FirebaseFirestore.getInstance()
-                db.collection("users")
-                    .whereEqualTo("role", "volunteer")
-                    .get()
-                    .addOnSuccessListener { snapshot ->
-                        for (doc in snapshot.documents) {
-                            val uid = doc.id
-                            NotificationHelper.sendNotificationToUser(
-                                recipientUid = uid,
-                                title = "New Task Available!",
-                                body = "Check out: $taskTitle"
-                            )
-                        }
-                    }
-            }
         }
+    }
+
+    private fun notifyAllVolunteers(taskTitle: String) {
+        FirebaseFirestore.getInstance()
+            .collection("users")
+            .whereEqualTo("role", "volunteer")
+            .get()
+            .addOnSuccessListener { snapshot ->
+                for (doc in snapshot.documents) {
+                    NotificationHelper.sendNotificationToUser(
+                        recipientUid = doc.id,
+                        title = "New Task Available!",
+                        body = "Check out: $taskTitle"
+                    )
+                }
+            }
     }
 }

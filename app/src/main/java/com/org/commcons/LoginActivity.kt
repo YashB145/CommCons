@@ -17,13 +17,13 @@ class LoginActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
 
     // Request notification permission for Android 13+
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        requestPermissions(
-            arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 1
-        )
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestPermissions(
+                arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 1
+            )
+        }
 
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)

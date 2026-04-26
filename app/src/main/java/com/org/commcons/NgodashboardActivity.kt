@@ -1,6 +1,6 @@
 package com.org.commcons
 
-import android.content.Intent   // ← add this if missing
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,20 +20,23 @@ class NgoDashboardActivity : AppCompatActivity() {
         binding = ActivityNgoDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val uid = auth.currentUser?.uid ?: ""
+
+        // Debug toasts
+
+        NotificationHelper.checkAndShowNotifications(this, uid)
+
         loadUserData()
 
         binding.btnCreateTask.setOnClickListener {
             startActivity(Intent(this, CreateTaskActivity::class.java))
         }
-
         binding.btnCreateSurvey.setOnClickListener {
             startActivity(Intent(this, ChatListActivity::class.java))
         }
-
         binding.btnViewAnalytics.setOnClickListener {
             startActivity(Intent(this, NgoAnalyticsActivity::class.java))
         }
-
         binding.btnVolunteers.setOnClickListener {
             val intent = Intent(this, TaskListActivity::class.java)
             intent.putExtra("isNgo", true)
@@ -66,14 +69,12 @@ class NgoDashboardActivity : AppCompatActivity() {
             .addOnSuccessListener { tasks ->
                 binding.tvTaskCount.text = tasks.size().toString()
             }
-
         db.collection("surveys")
             .whereEqualTo("ngoId", uid)
             .get()
             .addOnSuccessListener { surveys ->
                 binding.tvSurveyCount.text = surveys.size().toString()
             }
-
         db.collection("users")
             .whereEqualTo("role", "volunteer")
             .get()
