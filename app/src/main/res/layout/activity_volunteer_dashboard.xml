@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0A0E2A">
+    android:background="?attr/screenBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:background="#12174A"
+            android:background="?attr/headerBackground"
             android:padding="20dp">
 
             <LinearLayout
@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:text="SevaLink Volunteer"
                     android:textSize="12sp"
-                    android:textColor="#5C6BC0"/>
+                    android:textColor="?attr/secondaryText"/>
 
                 <TextView
                     android:id="@+id/tvWelcome"
@@ -38,8 +38,18 @@
                     android:text="Welcome!"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:textColor="#FFFFFF"/>
+                    android:textColor="?attr/primaryText"/>
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="⚙️"
+                android:textSize="16sp"
+                android:backgroundTint="?attr/buttonBackground"
+                android:textColor="?attr/accentCyan"
+                android:layout_marginEnd="8dp"/>
 
             <Button
                 android:id="@+id/btnLogout"
@@ -47,8 +57,8 @@
                 android:layout_height="36dp"
                 android:text="Logout"
                 android:textSize="12sp"
-                android:backgroundTint="#1A1F4A"
-                android:textColor="#00E5FF"/>
+                android:backgroundTint="?attr/buttonBackground"
+                android:textColor="?attr/accentCyan"/>
         </LinearLayout>
 
         <!-- Stats -->
@@ -64,7 +74,7 @@
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="#12174A"
+                android:background="?attr/cardBackground"
                 android:layout_marginEnd="8dp">
 
                 <TextView
@@ -74,14 +84,14 @@
                     android:text="0"
                     android:textSize="30sp"
                     android:textStyle="bold"
-                    android:textColor="#00E5FF"/>
+                    android:textColor="?attr/accentCyan"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Available"
                     android:textSize="12sp"
-                    android:textColor="#7986CB"/>
+                    android:textColor="?attr/secondaryText"/>
             </LinearLayout>
 
             <LinearLayout
@@ -90,7 +100,7 @@
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="#12174A">
+                android:background="?attr/cardBackground">
 
                 <TextView
                     android:id="@+id/tvTasksAccepted"
@@ -99,14 +109,14 @@
                     android:text="0"
                     android:textSize="30sp"
                     android:textStyle="bold"
-                    android:textColor="#69F0AE"/>
+                    android:textColor="?attr/accentGreen"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Accepted"
                     android:textSize="12sp"
-                    android:textColor="#7986CB"/>
+                    android:textColor="?attr/secondaryText"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -116,11 +126,12 @@
             android:text="QUICK ACTIONS"
             android:textSize="11sp"
             android:textStyle="bold"
-            android:textColor="#5C6BC0"
+            android:textColor="?attr/secondaryText"
             android:letterSpacing="0.15"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="12dp"/>
 
+        <!-- Row 1 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -136,8 +147,8 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
                 android:text="📋 View Tasks"
-                android:backgroundTint="#1A237E"
-                android:textColor="#00E5FF"
+                android:backgroundTint="?attr/buttonBackground"
+                android:textColor="?attr/accentCyan"
                 android:textSize="13sp"/>
 
             <Button
@@ -146,11 +157,12 @@
                 android:layout_height="80dp"
                 android:layout_weight="1"
                 android:text="🗺 Map View"
-                android:backgroundTint="#1A237E"
-                android:textColor="#69F0AE"
+                android:backgroundTint="?attr/buttonBackground"
+                android:textColor="?attr/accentGreen"
                 android:textSize="13sp"/>
         </LinearLayout>
 
+        <!-- Row 2 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -166,8 +178,8 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
                 android:text="💬 Chat"
-                android:backgroundTint="#1A237E"
-                android:textColor="#FF6E40"
+                android:backgroundTint="?attr/buttonBackground"
+                android:textColor="?attr/accentOrange"
                 android:textSize="13sp"/>
 
             <Button
@@ -176,8 +188,8 @@
                 android:layout_height="80dp"
                 android:layout_weight="1"
                 android:text="👤 My Profile"
-                android:backgroundTint="#1A237E"
-                android:textColor="#FFD740"
+                android:backgroundTint="?attr/buttonBackground"
+                android:textColor="?attr/accentYellow"
                 android:textSize="13sp"/>
         </LinearLayout>
 
@@ -186,8 +198,8 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="🤖 Gemini Smart Match"
-            android:backgroundTint="#00E5FF"
-            android:textColor="#0A0E2A"
+            android:backgroundTint="?attr/accentCyan"
+            android:textColor="?attr/screenBackground"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginStart="16dp"
@@ -199,8 +211,8 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:text="📋 Task History"
-            android:backgroundTint="#1A1F4A"
-            android:textColor="#00E5FF"
+            android:backgroundTint="?attr/cardBackground"
+            android:textColor="?attr/accentCyan"
             android:textSize="15sp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"

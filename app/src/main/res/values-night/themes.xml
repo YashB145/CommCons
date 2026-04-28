@@ -1,7 +1,25 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.CommCons" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.CommCons" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#00E5FF</item>
+        <item name="colorPrimaryVariant">#1A1F4A</item>
+        <item name="colorOnPrimary">#0A0E2A</item>
+        <item name="colorSecondary">#69F0AE</item>
+        <item name="colorSecondaryVariant">#00897B</item>
+        <item name="colorOnSecondary">#0A0E2A</item>
+        <item name="android:statusBarColor">#12174A</item>
+
+        <!-- Dark theme custom attrs -->
+        <item name="screenBackground">#0A0E2A</item>
+        <item name="cardBackground">#12174A</item>
+        <item name="headerBackground">#12174A</item>
+        <item name="primaryText">#FFFFFF</item>
+        <item name="secondaryText">#7986CB</item>
+        <item name="accentCyan">#00E5FF</item>
+        <item name="accentGreen">#69F0AE</item>
+        <item name="accentOrange">#FF6E40</item>
+        <item name="accentYellow">#FFD740</item>
+        <item name="buttonBackground">#1A237E</item>
+        <item name="inputBackground">@drawable/rounded_input_dark</item>
     </style>
 </resources>

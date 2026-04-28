@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Brand -->
     <color name="colorPrimary">#1565C0</color>
     <color name="colorPrimaryVariant">#0D47A1</color>
     <color name="colorOnPrimary">#FFFFFF</color>
     <color name="colorSecondary">#00897B</color>
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
+
+    <!-- Light theme -->
+    <color name="light_background">#F5F5F5</color>
+    <color name="light_surface">#FFFFFF</color>
+    <color name="light_text_primary">#1A1A1A</color>
+    <color name="light_text_secondary">#666666</color>
+    <color name="light_header">#1565C0</color>
+
+    <!-- Dark theme -->
+    <color name="dark_background">#0D1B2A</color>
+    <color name="dark_surface">#1B2A3B</color>
+    <color name="dark_text_primary">#FFFFFF</color>
+    <color name="dark_text_secondary">#AECBDA</color>
+    <color name="dark_header">#0D1B2A</color>
 </resources>

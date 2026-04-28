@@ -19,7 +19,7 @@ class NgoDashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityNgoDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        SettingsActivity.applyTheme(this)
         val uid = auth.currentUser?.uid ?: ""
 
         // Debug toasts
@@ -53,6 +53,10 @@ class NgoDashboardActivity : AppCompatActivity() {
             val i = Intent(this, TaskHistoryActivity::class.java)
             i.putExtra("isNgo", true)
             startActivity(i)
+        }
+
+        binding.btnSettings.setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
         }
     }
 

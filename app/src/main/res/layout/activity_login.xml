@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0A0E2A">
+    android:background="?attr/screenBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:text="SevaLink"
             android:textSize="38sp"
             android:textStyle="bold"
-            android:textColor="#00E5FF"
+            android:textColor="?attr/accentCyan"
             android:layout_marginBottom="4dp"/>
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="Connecting volunteers with purpose"
             android:textSize="14sp"
-            android:textColor="#7986CB"
+            android:textColor="?attr/secondaryText"
             android:layout_marginBottom="48dp"/>
 
         <EditText
@@ -41,12 +41,13 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:hint="Email Address"
-            android:textColor="#FFFFFF"
+            android:textColor="?attr/primaryText"
+            android:textColorHint="?attr/secondaryText"
             android:textSize="15sp"
             android:inputType="textEmailAddress"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:background="@drawable/rounded_input_dark"
+            android:background="?attr/inputBackground"
             android:layout_marginBottom="16dp"/>
 
         <EditText
@@ -54,12 +55,13 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:hint="Password"
-            android:textColor="#FFFFFF"
+            android:textColor="?attr/primaryText"
+            android:textColorHint="?attr/secondaryText"
             android:textSize="15sp"
             android:inputType="textPassword"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:background="@drawable/rounded_input_dark"
+            android:background="?attr/inputBackground"
             android:layout_marginBottom="28dp"/>
 
         <Button
@@ -69,8 +71,8 @@
             android:text="Sign In"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:textColor="#0A0E2A"
-            android:backgroundTint="#00E5FF"
+            android:textColor="?attr/screenBackground"
+            android:backgroundTint="?attr/accentCyan"
             android:layout_marginBottom="16dp"/>
 
         <Button
@@ -79,8 +81,8 @@
             android:layout_height="56dp"
             android:text="Create Account"
             android:textSize="15sp"
-            android:textColor="#00E5FF"
-            android:backgroundTint="#1A1F4A"
+            android:textColor="?attr/accentCyan"
+            android:backgroundTint="?attr/cardBackground"
             android:layout_marginBottom="16dp"/>
 
         <ProgressBar
@@ -88,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:indeterminateTint="#00E5FF"/>
+            android:indeterminateTint="?attr/accentCyan"/>
 
     </LinearLayout>
 </ScrollView>

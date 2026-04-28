@@ -17,7 +17,9 @@ class VolunteerDashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // Check for pending notifications
         val uid = auth.currentUser?.uid ?: ""
+
         NotificationHelper.checkAndShowNotifications(this, uid)
+        SettingsActivity.applyTheme(this)
         super.onCreate(savedInstanceState)
         binding = ActivityVolunteerDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -56,6 +58,9 @@ class VolunteerDashboardActivity : AppCompatActivity() {
             val i = Intent(this, TaskHistoryActivity::class.java)
             i.putExtra("isNgo", false)
             startActivity(i)
+        }
+        binding.btnSettings.setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
         }
     }
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="screenBackground" format="color"/>
+    <attr name="cardBackground" format="color"/>
+    <attr name="headerBackground" format="color"/>
+    <attr name="primaryText" format="color"/>
+    <attr name="secondaryText" format="color"/>
+    <attr name="accentCyan" format="color"/>
+    <attr name="accentGreen" format="color"/>
+    <attr name="accentOrange" format="color"/>
+    <attr name="accentYellow" format="color"/>
+    <attr name="buttonBackground" format="color"/>
+    <attr name="inputBackground" format="reference"/>
+</resources>

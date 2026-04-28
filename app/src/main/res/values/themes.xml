@@ -8,5 +8,18 @@
         <item name="colorSecondaryVariant">#00695C</item>
         <item name="colorOnSecondary">#FFFFFF</item>
         <item name="android:statusBarColor">#1565C0</item>
+
+        <!-- Light theme custom attrs -->
+        <item name="screenBackground">#F5F5F5</item>
+        <item name="cardBackground">#FFFFFF</item>
+        <item name="headerBackground">#1565C0</item>
+        <item name="primaryText">#1A1A1A</item>
+        <item name="secondaryText">#666666</item>
+        <item name="accentCyan">#1565C0</item>
+        <item name="accentGreen">#00897B</item>
+        <item name="accentOrange">#E65100</item>
+        <item name="accentYellow">#F57C00</item>
+        <item name="buttonBackground">#1565C0</item>
+        <item name="inputBackground">@drawable/rounded_input_light</item>
     </style>
 </resources>

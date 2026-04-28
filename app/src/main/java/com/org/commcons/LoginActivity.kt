@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
                 arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 1
             )
         }
-
+        SettingsActivity.applyTheme(this)
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
