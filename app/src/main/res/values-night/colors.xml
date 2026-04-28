@@ -7,11 +7,15 @@
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
 
-    <color name="light_background">#0D1B2A</color>
-    <color name="light_surface">#1B2A3B</color>
-    <color name="light_text_primary">#FFFFFF</color>
-    <color name="light_text_secondary">#AECBDA</color>
-    <color name="light_header">#0D1B2A</color>
+    <color name="primary">#00ACC1</color>
+    <color name="background">#0D1321</color>
+    <color name="card">#1C2541</color>
+
+    <color name="textPrimary">#FFFFFF</color>
+    <color name="textSecondary">#A0A0A0</color>
+
+    <color name="buttonTextPrimary">#000000</color>
+    <color name="buttonTextSecondary">#00ACC1</color>
 
     <color name="dark_background">#0D1B2A</color>
     <color name="dark_surface">#1B2A3B</color>

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:text="← Back"
             android:textSize="12sp"
-            android:backgroundTint="?attr/colorPrimaryVariant"
+            android:backgroundTint="@color/card"
             android:textColor="#FFFFFF"/>
 
         <TextView

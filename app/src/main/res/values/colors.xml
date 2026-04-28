@@ -9,11 +9,17 @@
     <color name="black">#FF000000</color>
 
     <!-- Light theme -->
-    <color name="light_background">#F5F5F5</color>
-    <color name="light_surface">#FFFFFF</color>
-    <color name="light_text_primary">#1A1A1A</color>
-    <color name="light_text_secondary">#666666</color>
-    <color name="light_header">#1565C0</color>
+
+        <color name="primary">#1565C0</color>
+        <color name="background">#FFFFFF</color>
+        <color name="card">#F5F5F5</color>
+
+        <color name="textPrimary">#111111</color>
+        <color name="textSecondary">#666666</color>
+
+        <color name="buttonTextPrimary">#FFFFFF</color>
+        <color name="buttonTextSecondary">#1565C0</color>
+
 
     <!-- Dark theme -->
     <color name="dark_background">#0D1B2A</color>

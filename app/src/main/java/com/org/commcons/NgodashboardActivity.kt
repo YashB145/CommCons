@@ -55,9 +55,6 @@ class NgoDashboardActivity : AppCompatActivity() {
             startActivity(i)
         }
 
-        binding.btnSettings.setOnClickListener {
-            startActivity(Intent(this, SettingsActivity::class.java))
-        }
     }
 
     private fun loadUserData() {

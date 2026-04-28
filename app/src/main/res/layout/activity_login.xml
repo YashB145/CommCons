@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/screenBackground">
+    android:background="#0A0E2A">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:text="SevaLink"
             android:textSize="38sp"
             android:textStyle="bold"
-            android:textColor="?attr/accentCyan"
+            android:textColor="#00E5FF"
             android:layout_marginBottom="4dp"/>
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="Connecting volunteers with purpose"
             android:textSize="14sp"
-            android:textColor="?attr/secondaryText"
+            android:textColor="#7986CB"
             android:layout_marginBottom="48dp"/>
 
         <EditText
@@ -41,13 +41,13 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:hint="Email Address"
-            android:textColor="?attr/primaryText"
-            android:textColorHint="?attr/secondaryText"
+            android:textColorHint="#7986CB"
+            android:textColor="#FFFFFF"
             android:textSize="15sp"
             android:inputType="textEmailAddress"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:background="?attr/inputBackground"
+            android:background="#1A1F4A"
             android:layout_marginBottom="16dp"/>
 
         <EditText
@@ -55,13 +55,13 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:hint="Password"
-            android:textColor="?attr/primaryText"
-            android:textColorHint="?attr/secondaryText"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#7986CB"
             android:textSize="15sp"
             android:inputType="textPassword"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:background="?attr/inputBackground"
+            android:background="#1A1F4A"
             android:layout_marginBottom="28dp"/>
 
         <Button
@@ -71,8 +71,8 @@
             android:text="Sign In"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:textColor="?attr/screenBackground"
-            android:backgroundTint="?attr/accentCyan"
+            android:textColor="#0A0E2A"
+            android:backgroundTint="#00E5FF"
             android:layout_marginBottom="16dp"/>
 
         <Button
@@ -81,8 +81,8 @@
             android:layout_height="56dp"
             android:text="Create Account"
             android:textSize="15sp"
-            android:textColor="?attr/accentCyan"
-            android:backgroundTint="?attr/cardBackground"
+            android:textColor="#00E5FF"
+            android:backgroundTint="#1A1F4A"
             android:layout_marginBottom="16dp"/>
 
         <ProgressBar
@@ -90,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:indeterminateTint="?attr/accentCyan"/>
+            android:indeterminateTint="#00E5FF"/>
 
     </LinearLayout>
 </ScrollView>

@@ -13,12 +13,12 @@
         <item name="screenBackground">#F5F5F5</item>
         <item name="cardBackground">#FFFFFF</item>
         <item name="headerBackground">#1565C0</item>
-        <item name="primaryText">#1A1A1A</item>
-        <item name="secondaryText">#666666</item>
-        <item name="accentCyan">#1565C0</item>
-        <item name="accentGreen">#00897B</item>
-        <item name="accentOrange">#E65100</item>
-        <item name="accentYellow">#F57C00</item>
+        <item name="primaryText">#FFFFFF</item>
+        <item name="secondaryText">#BBDEFB</item>
+        <item name="accentCyan">#FFFFFF</item>
+        <item name="accentGreen">#FFFFFF</item>
+        <item name="accentOrange">#FFFFFF</item>
+        <item name="accentYellow">#FFFFFF</item>
         <item name="buttonBackground">#1565C0</item>
         <item name="inputBackground">@drawable/rounded_input_light</item>
     </style>
