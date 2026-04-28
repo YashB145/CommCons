@@ -25,10 +25,8 @@ class MatchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMatchBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Toast.makeText(this, "Match screen loaded", Toast.LENGTH_SHORT).show()
         binding.btnBack.setOnClickListener { finish() }
-
-        showStatus("Loading tasks...")
+        showStatus("Finding best matches...")
         loadMatches()
     }
 
@@ -44,31 +42,27 @@ class MatchActivity : AppCompatActivity() {
     }
 
     private fun loadMatches() {
-        // Step 1: get volunteer skills
         db.collection("users").document(uid).get()
             .addOnSuccessListener { userDoc ->
                 val volunteerSkills = (userDoc.get("skills") as? List<*>)
                     ?.mapNotNull { it?.toString()?.lowercase()?.trim() }
                     ?: emptyList()
 
-                showStatus("Finding tasks for skills: ${
+                showStatus("Analyzing your skills: ${
                     if (volunteerSkills.isEmpty()) "none set"
                     else volunteerSkills.joinToString(", ")
                 }")
 
-                // Step 2: get ALL tasks (not just open, to debug)
                 db.collection("tasks").get()
                     .addOnSuccessListener { snapshot ->
-                        val allTasks = snapshot.documents.mapNotNull {
-                            it.toObject(Task::class.java)
-                        }
+                        val allTasks = snapshot.documents
+                            .mapNotNull { it.toObject(Task::class.java) }
 
                         if (allTasks.isEmpty()) {
-                            showStatus("No tasks found in database at all")
+                            showStatus("No tasks found in database")
                             return@addOnSuccessListener
                         }
 
-                        // Step 3: filter open + score
                         val openTasks = allTasks.filter { it.status == "open" }
 
                         if (openTasks.isEmpty()) {
@@ -96,11 +90,11 @@ class MatchActivity : AppCompatActivity() {
                         setupRecyclerView(scored, volunteerSkills)
                     }
                     .addOnFailureListener { e ->
-                        showStatus("Firestore error: ${e.message}")
+                        showStatus("Error: ${e.message}")
                     }
             }
             .addOnFailureListener { e ->
-                showStatus("Could not load user profile: ${e.message}")
+                showStatus("Could not load profile: ${e.message}")
             }
     }
 
@@ -126,9 +120,7 @@ class MatchActivity : AppCompatActivity() {
                         .inflate(R.layout.item_match, parent, false)
                 )
 
-            override fun onBindViewHolder(
-                holder: RecyclerView.ViewHolder, position: Int
-            ) {
+            override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
                 val (task, score) = matches[position]
                 holder as MatchViewHolder
 
@@ -150,7 +142,7 @@ class MatchActivity : AppCompatActivity() {
                     if (taskSkills.isEmpty()) "Open to all"
                     else taskSkills.joinToString(", ")
                 }"
-                holder.tvMatchedSkills.text = "✓ You have: ${
+                holder.tvMatchedSkills.text = "✓ AI matched: ${
                     if (matched.isEmpty()) "—"
                     else matched.joinToString(", ")
                 }"

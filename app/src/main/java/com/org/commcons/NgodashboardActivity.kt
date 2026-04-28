@@ -49,6 +49,11 @@ class NgoDashboardActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        binding.btnHistory.setOnClickListener {
+            val i = Intent(this, TaskHistoryActivity::class.java)
+            i.putExtra("isNgo", true)
+            startActivity(i)
+        }
     }
 
     private fun loadUserData() {

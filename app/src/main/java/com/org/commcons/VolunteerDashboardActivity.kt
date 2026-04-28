@@ -22,6 +22,7 @@ class VolunteerDashboardActivity : AppCompatActivity() {
         binding = ActivityVolunteerDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         loadUserData()
 
         binding.btnViewTasks.setOnClickListener {
@@ -50,6 +51,11 @@ class VolunteerDashboardActivity : AppCompatActivity() {
         }
         binding.btnSmartMatch.setOnClickListener {
             startActivity(Intent(this, MatchActivity::class.java))
+        }
+        binding.btnHistory.setOnClickListener {
+            val i = Intent(this, TaskHistoryActivity::class.java)
+            i.putExtra("isNgo", false)
+            startActivity(i)
         }
     }
 

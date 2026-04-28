@@ -3,25 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F5F5F5">
+    android:background="#0A0E2A">
 
-    <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:background="#1565C0"
+        android:background="#12174A"
         android:padding="16dp">
 
         <Button
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:text="← Back"
             android:textSize="12sp"
-            android:backgroundTint="#0D47A1"
-            android:textColor="#FFFFFF"/>
+            android:backgroundTint="#1A1F4A"
+            android:textColor="#00E5FF"/>
 
         <TextView
             android:id="@+id/tvTitle"
@@ -29,22 +28,21 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Tasks"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:gravity="center"/>
     </LinearLayout>
 
-    <!-- Empty state -->
     <TextView
         android:id="@+id/tvEmpty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No tasks available"
-        android:textColor="#888888"
-        android:textSize="16sp"
+        android:text="No tasks found"
+        android:textSize="15sp"
+        android:textColor="#5C6BC0"
         android:gravity="center"
-        android:padding="32dp"
+        android:padding="48dp"
         android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView

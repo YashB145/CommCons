@@ -74,7 +74,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
         }
 
-        binding.tvLogin.setOnClickListener {
+        binding.btnGoToLogin.setOnClickListener{
             finish()
         }
     }

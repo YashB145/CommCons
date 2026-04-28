@@ -10,5 +10,6 @@ data class Task(
     val priority: String = "medium",
     val status: String = "open",
     val createdAt: Long = System.currentTimeMillis(),
-    val deadline: String = ""
+    val deadline: String = "",
+    val completedAt: Long = 0
 )

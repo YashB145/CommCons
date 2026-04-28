@@ -41,6 +41,7 @@
         <activity android:name=".VolunteerProfileActivity"/>
         <activity android:name=".NgoAnalyticsActivity"/>
         <activity android:name=".MatchActivity"/>
+        <activity android:name=".TaskHistoryActivity"/>
 
         <service
             android:name=".MyFirebaseMessagingService"

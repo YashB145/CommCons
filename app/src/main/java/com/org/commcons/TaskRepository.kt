@@ -47,12 +47,6 @@ class TaskRepository {
             }
     }
 
-    fun updateTaskStatus(taskId: String, status: String, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
-        tasksCollection.document(taskId)
-            .update("status", status)
-            .addOnSuccessListener { onSuccess() }
-            .addOnFailureListener { e -> onFailure(e.message ?: "Unknown error") }
-    }
 
     fun deleteTask(taskId: String, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
         tasksCollection.document(taskId)
@@ -71,6 +65,17 @@ class TaskRepository {
         db.collection("volunteersAssigned")
             .document("${taskId}_${volunteerId}")
             .set(assignment)
+            .addOnSuccessListener { onSuccess() }
+            .addOnFailureListener { e -> onFailure(e.message ?: "Unknown error") }
+    }
+
+    fun updateTaskStatus(taskId: String, status: String, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
+        val updates = hashMapOf<String, Any>("status" to status)
+        if (status == "done") {
+            updates["completedAt"] = System.currentTimeMillis()
+        }
+        tasksCollection.document(taskId)
+            .update(updates)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { e -> onFailure(e.message ?: "Unknown error") }
     }
