@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="3dp">
+    android:layout_marginStart="@dimen/spacing_md"
+    android:layout_marginEnd="@dimen/spacing_md"
+    android:layout_marginBottom="@dimen/spacing_sm"
+    app:cardCornerRadius="@dimen/card_radius"
+    app:cardElevation="0dp"
+    app:strokeWidth="@dimen/card_stroke"
+    app:strokeColor="?attr/strokeColor"
+    app:cardBackgroundColor="?attr/cardBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:padding="16dp">
+        android:padding="@dimen/spacing_md">
 
-        <!-- Avatar circle -->
+        <!-- Avatar: simple initial circle -->
         <View
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="#1565C0"
-            android:layout_marginEnd="16dp"/>
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:background="@drawable/sl_avatar_bg"
+            android:layout_marginEnd="@dimen/spacing_md"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -33,25 +38,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="User Name"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="#1A1A1A"/>
+                android:textColor="?attr/primaryText"/>
 
             <TextView
                 android:id="@+id/tvUserRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ROLE"
+                android:text="Volunteer"
                 android:textSize="12sp"
-                android:textColor="#888888"
+                android:textColor="?attr/secondaryText"
                 android:layout_marginTop="2dp"/>
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Chat →"
-            android:textColor="#1565C0"
-            android:textSize="13sp"/>
+        <!-- Chevron hint -->
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_back"
+            android:tint="?attr/secondaryText"
+            android:rotation="180"/>
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

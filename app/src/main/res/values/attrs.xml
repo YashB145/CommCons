@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Custom theme attributes for SevaLink - keep all existing names -->
     <attr name="screenBackground" format="color"/>
     <attr name="cardBackground" format="color"/>
     <attr name="headerBackground" format="color"/>
@@ -11,4 +12,14 @@
     <attr name="accentYellow" format="color"/>
     <attr name="buttonBackground" format="color"/>
     <attr name="inputBackground" format="reference"/>
+
+    <!-- Additional semantic attrs for the redesign -->
+    <attr name="strokeColor" format="color"/>
+    <attr name="mutedText" format="color"/>
+    <attr name="chipPriorityHighBg" format="color"/>
+    <attr name="chipPriorityHighText" format="color"/>
+    <attr name="chipPriorityMediumBg" format="color"/>
+    <attr name="chipPriorityMediumText" format="color"/>
+    <attr name="chipPriorityLowBg" format="color"/>
+    <attr name="chipPriorityLowText" format="color"/>
 </resources>

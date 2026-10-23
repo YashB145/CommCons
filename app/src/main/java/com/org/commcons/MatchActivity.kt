@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -126,11 +127,12 @@ class MatchActivity : AppCompatActivity() {
 
                 holder.tvTitle.text = task.title
                 holder.tvScore.text = "$score%"
+                // PRESENTATION: replace 0xFF hex int literals with color resources
                 holder.tvScore.setTextColor(
                     when {
-                        score >= 80 -> 0xFF2E7D32.toInt()
-                        score >= 50 -> 0xFFF57C00.toInt()
-                        else -> 0xFF1565C0.toInt()
+                        score >= 80 -> ContextCompat.getColor(holder.itemView.context, R.color.sl_priority_low)
+                        score >= 50 -> ContextCompat.getColor(holder.itemView.context, R.color.sl_priority_medium)
+                        else        -> ContextCompat.getColor(holder.itemView.context, R.color.sl_status_progress)
                     }
                 )
 
@@ -142,14 +144,13 @@ class MatchActivity : AppCompatActivity() {
                     if (taskSkills.isEmpty()) "Open to all"
                     else taskSkills.joinToString(", ")
                 }"
-                holder.tvMatchedSkills.text = "✓ AI matched: ${
+                holder.tvMatchedSkills.text = "You match: ${
                     if (matched.isEmpty()) "—"
                     else matched.joinToString(", ")
                 }"
                 holder.tvPriority.text = "Priority: ${task.priority.uppercase()}"
-                holder.tvLocation.text = "📍 ${
-                    task.locationName.ifEmpty { "Location TBD" }
-                }"
+                // Layout shows location icon; no emoji prefix needed
+                holder.tvLocation.text = task.locationName.ifEmpty { "Location TBD" }
 
                 holder.itemView.setOnClickListener {
                     val intent = Intent(

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -29,7 +30,7 @@ class TaskHistoryActivity : AppCompatActivity() {
         binding.btnBack.setOnClickListener { finish() }
 
         val isNgo = intent.getBooleanExtra("isNgo", false)
-        binding.tvTitle.text = if (isNgo) "Completed Tasks" else "My Task History"
+        binding.tvTitle.text = if (isNgo) "Completed tasks" else "My task history"
 
         loadHistory(isNgo)
     }
@@ -90,28 +91,39 @@ class TaskHistoryActivity : AppCompatActivity() {
             override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
                 val task = tasks[position]
                 holder as HistoryViewHolder
+                val ctx = holder.itemView.context
 
                 holder.tvTitle.text = task.title
                 holder.tvPriority.text = task.priority.uppercase()
-                holder.tvLocation.text = "📍 ${task.locationName.ifEmpty { "No location" }}"
-                holder.tvSkills.text = "🛠 ${
-                    if (task.requiredSkills.isEmpty()) "No skills required"
+
+                // Layout shows location icon; no emoji prefix needed
+                holder.tvLocation.text = task.locationName.ifEmpty { "No location" }
+                // Layout shows skills icon; no emoji prefix needed
+                holder.tvSkills.text = if (task.requiredSkills.isEmpty()) "No skills required"
                     else task.requiredSkills.joinToString(", ")
-                }"
 
-                val color = when (task.priority) {
-                    "high" -> 0xFFF44336.toInt()
-                    "medium" -> 0xFFFF9800.toInt()
-                    else -> 0xFF4CAF50.toInt()
+                // PRESENTATION: replace 0xFF hex ints with color resources
+                val (textColorRes, bgColorRes) = when (task.priority) {
+                    "high"   -> Pair(R.color.sl_priority_high,   R.color.sl_priority_high_bg)
+                    "medium" -> Pair(R.color.sl_priority_medium, R.color.sl_priority_medium_bg)
+                    else     -> Pair(R.color.sl_priority_low,    R.color.sl_priority_low_bg)
                 }
-                holder.tvPriority.setTextColor(color)
+                holder.tvPriority.setTextColor(ContextCompat.getColor(ctx, textColorRes))
+                val chipBg = ContextCompat.getDrawable(ctx, R.drawable.sl_chip_bg)?.mutate()
+                chipBg?.let {
+                    androidx.core.graphics.drawable.DrawableCompat.setTint(
+                        it, ContextCompat.getColor(ctx, bgColorRes)
+                    )
+                    holder.tvPriority.background = it
+                }
 
+                // Date - removed emoji ✅ prefix (layout now shows check icon)
                 holder.tvDate.text = if (task.completedAt > 0) {
-                    "✅ Completed: " + SimpleDateFormat(
+                    "Completed: " + SimpleDateFormat(
                         "dd MMM yyyy, hh:mm a", Locale.getDefault()
                     ).format(Date(task.completedAt))
                 } else {
-                    "✅ Completed"
+                    "Completed"
                 }
             }
 

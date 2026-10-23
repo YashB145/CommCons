@@ -2,95 +2,96 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0A0E2A">
+    android:background="?attr/screenBackground"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
-        android:padding="32dp"
-        android:minHeight="700dp">
+        android:padding="@dimen/spacing_lg"
+        android:minHeight="600dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="🤝"
-            android:textSize="64sp"
-            android:layout_marginBottom="8dp"/>
-
+        <!-- Wordmark block - left aligned, no emoji hero -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SevaLink"
             android:textSize="38sp"
             android:textStyle="bold"
-            android:textColor="#00E5FF"
-            android:layout_marginBottom="4dp"/>
+            android:fontFamily="serif"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="6dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Connecting volunteers with purpose"
+            android:text="Connecting communities through action."
             android:textSize="14sp"
-            android:textColor="#7986CB"
+            android:textColor="?attr/secondaryText"
             android:layout_marginBottom="48dp"/>
 
+        <!-- Email -->
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:hint="Email Address"
-            android:textColorHint="#7986CB"
-            android:textColor="#FFFFFF"
+            android:layout_height="@dimen/input_height"
+            android:hint="Email address"
+            android:textColorHint="?attr/mutedText"
+            android:textColor="?attr/primaryText"
             android:textSize="15sp"
             android:inputType="textEmailAddress"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:background="#1A1F4A"
-            android:layout_marginBottom="16dp"/>
+            android:paddingStart="@dimen/input_padding_h"
+            android:paddingEnd="@dimen/input_padding_h"
+            android:background="@drawable/rounded_input_light"
+            android:layout_marginBottom="@dimen/spacing_md"/>
 
+        <!-- Password -->
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="@dimen/input_height"
             android:hint="Password"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#7986CB"
+            android:textColor="?attr/primaryText"
+            android:textColorHint="?attr/mutedText"
             android:textSize="15sp"
             android:inputType="textPassword"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:background="#1A1F4A"
-            android:layout_marginBottom="28dp"/>
+            android:paddingStart="@dimen/input_padding_h"
+            android:paddingEnd="@dimen/input_padding_h"
+            android:background="@drawable/rounded_input_light"
+            android:layout_marginBottom="@dimen/spacing_lg"/>
 
+        <!-- Sign in button -->
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="Sign In"
-            android:textSize="17sp"
+            android:layout_height="@dimen/button_height"
+            android:text="Sign in"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#0A0E2A"
-            android:backgroundTint="#00E5FF"
-            android:layout_marginBottom="16dp"/>
+            android:textColor="@color/white"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_marginBottom="@dimen/spacing_md"/>
 
+        <!-- Create account button -->
         <Button
             android:id="@+id/btnGoToRegister"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="Create Account"
+            android:layout_height="@dimen/button_height"
+            android:text="Create account"
             android:textSize="15sp"
-            android:textColor="#00E5FF"
-            android:backgroundTint="#1A1F4A"
-            android:layout_marginBottom="16dp"/>
+            android:textColor="@color/colorPrimary"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_marginBottom="@dimen/spacing_md"/>
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:indeterminateTint="#00E5FF"/>
+            android:layout_gravity="center_horizontal"
+            android:indeterminateTint="@color/colorPrimary"
+            android:visibility="gone"/>
 
     </LinearLayout>
 </ScrollView>

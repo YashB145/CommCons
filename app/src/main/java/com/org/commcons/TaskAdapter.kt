@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
 
 class TaskAdapter(
@@ -33,20 +35,28 @@ class TaskAdapter(
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = tasks[position]
+        val ctx = holder.itemView.context
 
         holder.tvTitle.text = task.title
         holder.tvDescription.text = task.description
+        // Layout now shows a location pin icon drawable; text needs no emoji prefix
         holder.tvLocation.text = if (task.locationName.isNotEmpty())
-            "📍 ${task.locationName}" else "📍 Location not specified"
+            task.locationName else ctx.getString(R.string.location_not_specified)
         holder.tvStatus.text = task.status.uppercase()
         holder.tvPriority.text = task.priority.uppercase()
 
-        val priorityColor = when (task.priority) {
-            "high" -> android.graphics.Color.parseColor("#F44336")
-            "medium" -> android.graphics.Color.parseColor("#FF9800")
-            else -> android.graphics.Color.parseColor("#4CAF50")
+        // Use color resources so both light and dark themes render correctly
+        val (textColorRes, bgColorRes) = when (task.priority) {
+            "high"   -> Pair(R.color.sl_priority_high,   R.color.sl_priority_high_bg)
+            "medium" -> Pair(R.color.sl_priority_medium, R.color.sl_priority_medium_bg)
+            else     -> Pair(R.color.sl_priority_low,    R.color.sl_priority_low_bg)
         }
-        holder.tvPriority.setBackgroundColor(priorityColor)
+        holder.tvPriority.setTextColor(ContextCompat.getColor(ctx, textColorRes))
+        val chipBg = ContextCompat.getDrawable(ctx, R.drawable.sl_chip_bg)?.mutate()
+        chipBg?.let {
+            DrawableCompat.setTint(it, ContextCompat.getColor(ctx, bgColorRes))
+            holder.tvPriority.background = it
+        }
 
         if (isNgo) {
             holder.btnDelete.visibility = View.VISIBLE

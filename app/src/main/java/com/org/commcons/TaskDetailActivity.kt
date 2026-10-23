@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.org.commcons.databinding.ActivityTaskDetailBinding
@@ -55,27 +56,37 @@ class TaskDetailActivity : AppCompatActivity() {
     private fun bindTask(task: Task) {
         binding.tvDetailTitle.text = task.title
         binding.tvDetailDescription.text = task.description
-        binding.tvDetailLocation.text = "📍 ${task.locationName.ifEmpty { "Not specified" }}"
+        // Layout shows location icon; no emoji prefix needed
+        binding.tvDetailLocation.text = task.locationName.ifEmpty { "Not specified" }
         binding.tvDetailStatus.text = "Status: ${task.status.uppercase()}"
-        binding.tvDetailSkills.text = "🛠 Skills: ${
-            if (task.requiredSkills.isEmpty()) "None required"
+        // Layout shows skills icon; no emoji prefix needed
+        binding.tvDetailSkills.text = if (task.requiredSkills.isEmpty()) "None required"
             else task.requiredSkills.joinToString(", ")
-        }"
 
         binding.tvDetailPriority.text = task.priority.uppercase()
-        val color = when (task.priority) {
-            "high" -> android.graphics.Color.parseColor("#F44336")
-            "medium" -> android.graphics.Color.parseColor("#FF9800")
-            else -> android.graphics.Color.parseColor("#4CAF50")
-        }
-        binding.tvDetailPriority.setBackgroundColor(color)
 
+        // PRESENTATION: replace Color.parseColor with color resources for theme correctness
+        val (priorityTextRes, priorityBgRes) = when (task.priority) {
+            "high"   -> Pair(R.color.sl_priority_high,   R.color.sl_priority_high_bg)
+            "medium" -> Pair(R.color.sl_priority_medium, R.color.sl_priority_medium_bg)
+            else     -> Pair(R.color.sl_priority_low,    R.color.sl_priority_low_bg)
+        }
+        binding.tvDetailPriority.setTextColor(ContextCompat.getColor(this, priorityTextRes))
+        val chipBg = ContextCompat.getDrawable(this, R.drawable.sl_chip_bg)?.mutate()
+        chipBg?.let {
+            androidx.core.graphics.drawable.DrawableCompat.setTint(
+                it, ContextCompat.getColor(this, priorityBgRes)
+            )
+            binding.tvDetailPriority.background = it
+        }
+
+        // PRESENTATION: status text color via color resources
         binding.tvDetailStatus.setTextColor(
             when (task.status) {
-                "open" -> android.graphics.Color.parseColor("#1565C0")
-                "in_progress" -> android.graphics.Color.parseColor("#FF9800")
-                "done" -> android.graphics.Color.parseColor("#4CAF50")
-                else -> android.graphics.Color.parseColor("#888888")
+                "open"        -> ContextCompat.getColor(this, R.color.sl_status_open)
+                "in_progress" -> ContextCompat.getColor(this, R.color.sl_status_progress)
+                "done"        -> ContextCompat.getColor(this, R.color.sl_status_done)
+                else          -> ContextCompat.getColor(this, R.color.sl_text_secondary)
             }
         )
 
@@ -106,10 +117,10 @@ class TaskDetailActivity : AppCompatActivity() {
                     repo.acceptTask(task.id, uid,
                         onSuccess = {
                             repo.updateTaskStatus(task.id, "in_progress", {
-                                Toast.makeText(this, "✅ Task accepted!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "Task accepted", Toast.LENGTH_SHORT).show()
                                 NotificationHelper.sendNotificationToUser(
                                     recipientUid = task.ngoId,
-                                    title = "Task Accepted!",
+                                    title = "Task Accepted",
                                     body = "$currentUserName accepted: ${task.title}"
                                 )
                                 loadTask()
@@ -130,7 +141,7 @@ class TaskDetailActivity : AppCompatActivity() {
         binding.btnMarkDone.setOnClickListener {
             binding.btnMarkDone.isEnabled = false
             repo.updateTaskStatus(task.id, "done", {
-                Toast.makeText(this, "🎉 Marked as done!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Marked as done", Toast.LENGTH_SHORT).show()
                 loadTask()
             }, { e ->
                 binding.btnMarkDone.isEnabled = true
@@ -140,7 +151,7 @@ class TaskDetailActivity : AppCompatActivity() {
 
         binding.btnDeleteTask.setOnClickListener {
             AlertDialog.Builder(this)
-                .setTitle("Delete Task")
+                .setTitle("Delete task")
                 .setMessage("Delete \"${task.title}\"?")
                 .setPositiveButton("Delete") { _, _ ->
                     repo.deleteTask(task.id,

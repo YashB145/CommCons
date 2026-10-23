@@ -101,9 +101,9 @@ class MapActivity : AppCompatActivity() {
         val markerJs = StringBuilder()
         for (m in markers) {
             val color = when (m.priority) {
-                "high" -> "red"
-                "medium" -> "orange"
-                else -> "green"
+                "high"   -> "#B5523B"   // terracotta
+                "medium" -> "#E0902B"   // saffron
+                else     -> "#1F5C4A"   // deep green
             }
             val safeTitle = m.title.replace("'", "\\'")
             markerJs.append(
@@ -134,31 +134,38 @@ class MapActivity : AppCompatActivity() {
                 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
                 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
                 <style>
-                    body { margin: 0; padding: 0; }
+                    body { margin: 0; padding: 0; background: #FAF7F2; font-family: sans-serif; }
                     #map { width: 100vw; height: 100vh; }
                     .legend {
-                        position: fixed; bottom: 20px; right: 10px;
-                        background: white; padding: 10px; border-radius: 8px;
-                        font-family: sans-serif; font-size: 13px;
-                        box-shadow: 0 2px 6px rgba(0,0,0,0.3); z-index: 1000;
+                        position: fixed; bottom: 20px; right: 12px;
+                        background: #FFFFFF; padding: 10px 14px; border-radius: 8px;
+                        font-size: 12px; border: 1px solid #E4DED3; z-index: 1000;
+                        color: #1C1B18;
                     }
+                    .legend-row { display: flex; align-items: center; margin-bottom: 5px; }
+                    .legend-row:last-child { margin-bottom: 0; }
                     .dot {
-                        display: inline-block; width: 12px; height: 12px;
-                        border-radius: 50%; margin-right: 6px;
+                        display: inline-block; width: 11px; height: 11px;
+                        border-radius: 50%; margin-right: 8px; flex-shrink: 0;
                     }
+                    .leaflet-popup-content-wrapper {
+                        border-radius: 8px; border: 1px solid #E4DED3;
+                        box-shadow: none; font-family: sans-serif;
+                    }
+                    .leaflet-popup-tip { background: #FFFFFF; }
                 </style>
             </head>
             <body>
                 <div id="map"></div>
                 <div class="legend">
-                    <div><span class="dot" style="background:red"></span>High</div>
-                    <div><span class="dot" style="background:orange"></span>Medium</div>
-                    <div><span class="dot" style="background:green"></span>Low</div>
+                    <div class="legend-row"><span class="dot" style="background:#B5523B"></span>High</div>
+                    <div class="legend-row"><span class="dot" style="background:#E0902B"></span>Medium</div>
+                    <div class="legend-row"><span class="dot" style="background:#1F5C4A"></span>Low</div>
                 </div>
                 <script>
                     var map = L.map('map');
                     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                        attribution: '© OpenStreetMap © CARTO'
+                        attribution: '&copy; OpenStreetMap &copy; CARTO'
                     }).addTo(map);
                     $markerJs
                     $boundsJs

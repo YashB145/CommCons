@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="?attr/screenBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingBottom="@dimen/spacing_xl">
 
         <!-- Header -->
         <LinearLayout
@@ -16,138 +17,216 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:background="#1565C0"
-            android:padding="16dp"
-            android:layout_marginBottom="20dp">
+            android:background="?attr/headerBackground"
+            android:paddingStart="@dimen/spacing_sm"
+            android:paddingEnd="@dimen/spacing_md"
+            android:paddingTop="@dimen/spacing_sm"
+            android:paddingBottom="@dimen/spacing_sm">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="← Back"
-                android:textSize="12sp"
-                android:backgroundTint="#0D47A1"
-                android:textColor="#FFFFFF"/>
+                android:layout_width="@dimen/icon_btn_size"
+                android:layout_height="@dimen/icon_btn_size"
+                android:src="@drawable/ic_back"
+                android:tint="@color/sl_text_on_primary"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/spacing_sm"
+                android:contentDescription="Back"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Create New Task"
+                android:text="Create task"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:gravity="center"/>
+                android:textColor="@color/sl_text_on_primary"
+                android:layout_marginStart="@dimen/spacing_sm"/>
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/etTitle"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:hint="Task Title *"
-            android:background="#FFFFFF"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:textColor="#333333"
-            android:textColorHint="#AAAAAA"
-            android:layout_marginBottom="12dp"/>
-
-        <EditText
-            android:id="@+id/etDescription"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:hint="Task Description *"
-            android:background="#FFFFFF"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingTop="12dp"
-            android:gravity="top"
-            android:inputType="textMultiLine"
-            android:textColor="#333333"
-            android:textColorHint="#AAAAAA"
-            android:layout_marginBottom="12dp"/>
-
-        <EditText
-            android:id="@+id/etLocation"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:hint="Location (optional)"
-            android:background="#FFFFFF"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:textColor="#333333"
-            android:textColorHint="#AAAAAA"
-            android:layout_marginBottom="12dp"/>
-
-        <EditText
-            android:id="@+id/etSkills"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:hint="Required Skills (comma separated)"
-            android:background="#FFFFFF"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:textColor="#333333"
-            android:textColorHint="#AAAAAA"
-            android:layout_marginBottom="16dp"/>
-
-        <TextView
+        <!-- Form container -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Priority"
-            android:textColor="#333333"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_md">
 
-        <RadioGroup
-            android:id="@+id/priorityGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="24dp">
-
-            <RadioButton
-                android:id="@+id/rbHigh"
+            <!-- Title field -->
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🔴 High"
-                android:textColor="#333333"
-                android:layout_marginEnd="16dp"/>
+                android:text="Task title"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:letterSpacing="0.08"
+                android:textColor="?attr/secondaryText"
+                android:layout_marginBottom="@dimen/spacing_sm"/>
 
-            <RadioButton
-                android:id="@+id/rbMedium"
+            <EditText
+                android:id="@+id/etTitle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_height"
+                android:hint="e.g. Medical camp volunteers needed"
+                android:background="@drawable/rounded_input_light"
+                android:paddingStart="@dimen/input_padding_h"
+                android:paddingEnd="@dimen/input_padding_h"
+                android:textColor="?attr/primaryText"
+                android:textColorHint="?attr/mutedText"
+                android:textSize="15sp"
+                android:layout_marginBottom="@dimen/spacing_md"/>
+
+            <!-- Description field -->
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🟡 Medium"
-                android:checked="true"
-                android:textColor="#333333"
-                android:layout_marginEnd="16dp"/>
+                android:text="Description"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:letterSpacing="0.08"
+                android:textColor="?attr/secondaryText"
+                android:layout_marginBottom="@dimen/spacing_sm"/>
 
-            <RadioButton
-                android:id="@+id/rbLow"
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:hint="Describe the task, requirements and expected outcome"
+                android:background="@drawable/rounded_input_light"
+                android:paddingStart="@dimen/input_padding_h"
+                android:paddingEnd="@dimen/input_padding_h"
+                android:paddingTop="@dimen/spacing_md"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:textColor="?attr/primaryText"
+                android:textColorHint="?attr/mutedText"
+                android:textSize="15sp"
+                android:layout_marginBottom="@dimen/spacing_md"/>
+
+            <!-- Location field -->
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🟢 Low"
-                android:textColor="#333333"/>
-        </RadioGroup>
+                android:text="Location"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:letterSpacing="0.08"
+                android:textColor="?attr/secondaryText"
+                android:layout_marginBottom="@dimen/spacing_sm"/>
 
-        <Button
-            android:id="@+id/btnSubmitTask"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:text="Create Task"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:backgroundTint="#1565C0"
-            android:layout_marginBottom="16dp"/>
+            <EditText
+                android:id="@+id/etLocation"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_height"
+                android:hint="City, area or address (optional)"
+                android:background="@drawable/rounded_input_light"
+                android:paddingStart="@dimen/input_padding_h"
+                android:paddingEnd="@dimen/input_padding_h"
+                android:textColor="?attr/primaryText"
+                android:textColorHint="?attr/mutedText"
+                android:textSize="15sp"
+                android:layout_marginBottom="@dimen/spacing_md"/>
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_gravity="center_horizontal"/>
+            <!-- Skills field -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Skills required"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:letterSpacing="0.08"
+                android:textColor="?attr/secondaryText"
+                android:layout_marginBottom="@dimen/spacing_sm"/>
 
+            <EditText
+                android:id="@+id/etSkills"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_height"
+                android:hint="e.g. teaching, first aid, driving"
+                android:background="@drawable/rounded_input_light"
+                android:paddingStart="@dimen/input_padding_h"
+                android:paddingEnd="@dimen/input_padding_h"
+                android:textColor="?attr/primaryText"
+                android:textColorHint="?attr/mutedText"
+                android:textSize="15sp"
+                android:layout_marginBottom="@dimen/spacing_lg"/>
+
+            <!-- Priority label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Priority"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:letterSpacing="0.08"
+                android:textColor="?attr/secondaryText"
+                android:layout_marginBottom="@dimen/spacing_sm"/>
+
+            <!-- Priority radio group - no emoji, styled plain -->
+            <RadioGroup
+                android:id="@+id/priorityGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/spacing_lg">
+
+                <RadioButton
+                    android:id="@+id/rbHigh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="High"
+                    android:textColor="@color/sl_priority_high"
+                    android:buttonTint="@color/sl_priority_high"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="@dimen/spacing_lg"/>
+
+                <RadioButton
+                    android:id="@+id/rbMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Medium"
+                    android:checked="true"
+                    android:textColor="@color/sl_priority_medium"
+                    android:buttonTint="@color/sl_priority_medium"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="@dimen/spacing_lg"/>
+
+                <RadioButton
+                    android:id="@+id/rbLow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Low"
+                    android:textColor="@color/sl_priority_low"
+                    android:buttonTint="@color/sl_priority_low"
+                    android:textSize="14sp"/>
+            </RadioGroup>
+
+            <!-- Submit button -->
+            <Button
+                android:id="@+id/btnSubmitTask"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:text="Create task"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/colorPrimary"
+                android:layout_marginBottom="@dimen/spacing_md"
+                android:elevation="0dp"
+                android:stateListAnimator="@null"/>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:indeterminateTint="@color/colorPrimary"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

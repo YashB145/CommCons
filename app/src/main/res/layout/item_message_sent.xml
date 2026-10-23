@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Sent message bubble: primary green, 14dp radius, tail-less -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="end"
-    android:padding="4dp">
+    android:paddingStart="@dimen/spacing_md"
+    android:paddingEnd="@dimen/spacing_md"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#1565C0"
-        android:padding="12dp"
-        android:layout_marginStart="64dp"
+        android:background="@drawable/sl_bubble_sent"
+        android:paddingStart="@dimen/spacing_md"
+        android:paddingEnd="@dimen/spacing_md"
+        android:paddingTop="@dimen/spacing_sm"
+        android:paddingBottom="@dimen/spacing_sm"
+        android:layout_marginStart="72dp"
         android:maxWidth="280dp">
 
         <TextView
@@ -20,17 +27,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Message"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/tvMessageTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12:00 PM"
-            android:textColor="#BBDEFB"
-            android:textSize="11sp"
+            android:text="12:00"
+            android:textColor="@color/white"
+            android:alpha="0.7"
+            android:textSize="10sp"
             android:layout_gravity="end"
-            android:layout_marginTop="4dp"/>
+            android:layout_marginTop="2dp"/>
     </LinearLayout>
 </LinearLayout>

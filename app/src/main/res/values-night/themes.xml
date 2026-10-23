@@ -1,25 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.CommCons" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">#00E5FF</item>
-        <item name="colorPrimaryVariant">#1A1F4A</item>
-        <item name="colorOnPrimary">#0A0E2A</item>
-        <item name="colorSecondary">#69F0AE</item>
-        <item name="colorSecondaryVariant">#00897B</item>
-        <item name="colorOnSecondary">#0A0E2A</item>
-        <item name="android:statusBarColor">#12174A</item>
 
-        <!-- Dark theme custom attrs -->
-        <item name="screenBackground">#0A0E2A</item>
-        <item name="cardBackground">#12174A</item>
-        <item name="headerBackground">#12174A</item>
-        <item name="primaryText">#FFFFFF</item>
-        <item name="secondaryText">#7986CB</item>
-        <item name="accentCyan">#00E5FF</item>
-        <item name="accentGreen">#69F0AE</item>
-        <item name="accentOrange">#FF6E40</item>
-        <item name="accentYellow">#FFD740</item>
-        <item name="buttonBackground">#1A237E</item>
+    <!-- ================================================================
+         Dark Theme Overrides
+         All colors reference values-night/colors.xml via resource names
+         ================================================================ -->
+    <style name="Theme.CommCons" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Material color roles - night values from values-night/colors.xml -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+
+        <!-- System bars -->
+        <item name="android:statusBarColor">@color/sl_header_bg</item>
+        <item name="android:navigationBarColor">@color/sl_background</item>
+        <item name="android:windowBackground">@color/sl_background</item>
+
+        <!-- Custom semantic attrs (night values) -->
+        <item name="screenBackground">@color/sl_background</item>
+        <item name="cardBackground">@color/sl_surface</item>
+        <item name="headerBackground">@color/sl_header_bg</item>
+        <item name="primaryText">@color/sl_text_primary</item>
+        <item name="secondaryText">@color/sl_text_secondary</item>
+        <item name="mutedText">@color/sl_text_secondary</item>
+        <item name="strokeColor">@color/sl_stroke</item>
+
+        <!-- Legacy attr aliases -->
+        <item name="accentCyan">@color/sl_accent_saffron</item>
+        <item name="accentGreen">@color/sl_accent_green</item>
+        <item name="accentOrange">@color/sl_accent_saffron</item>
+        <item name="accentYellow">@color/sl_accent_saffron</item>
+        <item name="buttonBackground">@color/sl_btn_primary</item>
         <item name="inputBackground">@drawable/rounded_input_dark</item>
+
+        <!-- Priority chip attrs (dark) -->
+        <item name="chipPriorityHighBg">@color/sl_priority_high_bg</item>
+        <item name="chipPriorityHighText">@color/sl_priority_high</item>
+        <item name="chipPriorityMediumBg">@color/sl_priority_medium_bg</item>
+        <item name="chipPriorityMediumText">@color/sl_priority_medium</item>
+        <item name="chipPriorityLowBg">@color/sl_priority_low_bg</item>
+        <item name="chipPriorityLowText">@color/sl_priority_low</item>
     </style>
+
 </resources>

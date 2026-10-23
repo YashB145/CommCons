@@ -1,199 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0A0E2A">
+    android:background="?attr/screenBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/spacing_xl">
 
+        <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:background="#12174A"
-            android:padding="16dp">
+            android:background="?attr/headerBackground"
+            android:paddingStart="@dimen/spacing_sm"
+            android:paddingEnd="@dimen/spacing_md"
+            android:paddingTop="@dimen/spacing_sm"
+            android:paddingBottom="@dimen/spacing_sm">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="← Back"
-                android:textSize="12sp"
-                android:backgroundTint="#1A1F4A"
-                android:textColor="#00E5FF"/>
+                android:layout_width="@dimen/icon_btn_size"
+                android:layout_height="@dimen/icon_btn_size"
+                android:src="@drawable/ic_back"
+                android:tint="@color/sl_text_on_primary"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/spacing_sm"
+                android:contentDescription="Back"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="My Profile"
-                android:textSize="20sp"
+                android:text="My profile"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:gravity="center"/>
+                android:textColor="@color/sl_text_on_primary"
+                android:layout_marginStart="@dimen/spacing_sm"/>
         </LinearLayout>
 
-        <!-- Stats -->
+        <!-- Stats row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#0D1235"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp">
+            android:background="?attr/cardBackground"
+            android:paddingTop="@dimen/spacing_lg"
+            android:paddingBottom="@dimen/spacing_lg"
+            android:paddingStart="@dimen/spacing_md"
+            android:paddingEnd="@dimen/spacing_md">
 
+            <!-- Accepted stat -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center_horizontal">
+
                 <TextView
                     android:id="@+id/tvTasksAccepted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="30sp"
+                    android:textSize="28sp"
                     android:textStyle="bold"
-                    android:textColor="#00E5FF"/>
+                    android:fontFamily="serif"
+                    android:textColor="@color/colorPrimary"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Accepted"
                     android:textSize="12sp"
-                    android:textColor="#5C6BC0"/>
+                    android:textColor="?attr/secondaryText"/>
             </LinearLayout>
 
+            <!-- Completed stat -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center_horizontal">
+
                 <TextView
                     android:id="@+id/tvTasksCompleted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="30sp"
+                    android:textSize="28sp"
                     android:textStyle="bold"
-                    android:textColor="#69F0AE"/>
+                    android:fontFamily="serif"
+                    android:textColor="@color/sl_priority_low"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Completed"
                     android:textSize="12sp"
-                    android:textColor="#5C6BC0"/>
+                    android:textColor="?attr/secondaryText"/>
             </LinearLayout>
 
+            <!-- Surveys stat -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center_horizontal">
+
                 <TextView
                     android:id="@+id/tvSurveysFilled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="30sp"
+                    android:textSize="28sp"
                     android:textStyle="bold"
-                    android:textColor="#FFD740"/>
+                    android:fontFamily="serif"
+                    android:textColor="@color/sl_accent_saffron"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Surveys"
                     android:textSize="12sp"
-                    android:textColor="#5C6BC0"/>
+                    android:textColor="?attr/secondaryText"/>
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Form -->
-        <LinearLayout
+        <!-- Hairline divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?attr/strokeColor"/>
+
+        <!-- Form card -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#12174A"
-            android:layout_margin="16dp"
-            android:padding="20dp">
+            android:layout_margin="@dimen/spacing_md"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardElevation="0dp"
+            app:strokeWidth="@dimen/card_stroke"
+            app:strokeColor="?attr/strokeColor"
+            app:cardBackgroundColor="?attr/cardBackground">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="FULL NAME"
-                android:textSize="11sp"
-                android:textColor="#5C6BC0"
-                android:letterSpacing="0.1"
-                android:layout_marginBottom="8dp"/>
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_lg">
 
-            <EditText
-                android:id="@+id/etName"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="#1A1F4A"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:textColor="#FFFFFF"
-                android:hint="Your name"
-                android:layout_marginBottom="20dp"/>
+                <!-- Full name -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Full name"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.08"
+                    android:textColor="?attr/secondaryText"
+                    android:layout_marginBottom="@dimen/spacing_sm"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BIO"
-                android:textSize="11sp"
-                android:textColor="#5C6BC0"
-                android:letterSpacing="0.1"
-                android:layout_marginBottom="8dp"/>
+                <EditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/input_height"
+                    android:background="@drawable/rounded_input_light"
+                    android:paddingStart="@dimen/input_padding_h"
+                    android:paddingEnd="@dimen/input_padding_h"
+                    android:textColor="?attr/primaryText"
+                    android:textColorHint="?attr/mutedText"
+                    android:hint="Your name"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="@dimen/spacing_lg"/>
 
-            <EditText
-                android:id="@+id/etBio"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:background="#1A1F4A"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:textColor="#FFFFFF"
-                android:hint="Tell us about yourself"
-                android:gravity="top"
-                android:inputType="textMultiLine"
-                android:layout_marginBottom="20dp"/>
+                <!-- Bio -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bio"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.08"
+                    android:textColor="?attr/secondaryText"
+                    android:layout_marginBottom="@dimen/spacing_sm"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SKILLS (comma separated)"
-                android:textSize="11sp"
-                android:textColor="#5C6BC0"
-                android:letterSpacing="0.1"
-                android:layout_marginBottom="8dp"/>
+                <EditText
+                    android:id="@+id/etBio"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@drawable/rounded_input_light"
+                    android:paddingStart="@dimen/input_padding_h"
+                    android:paddingEnd="@dimen/input_padding_h"
+                    android:paddingTop="@dimen/spacing_sm"
+                    android:textColor="?attr/primaryText"
+                    android:textColorHint="?attr/mutedText"
+                    android:hint="A short introduction"
+                    android:gravity="top"
+                    android:inputType="textMultiLine"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="@dimen/spacing_lg"/>
 
-            <EditText
-                android:id="@+id/etSkills"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="#1A1F4A"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:textColor="#FFFFFF"
-                android:hint="e.g. teaching, medical, driving"
-                android:layout_marginBottom="24dp"/>
+                <!-- Skills -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Skills"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.08"
+                    android:textColor="?attr/secondaryText"
+                    android:layout_marginBottom="@dimen/spacing_sm"/>
 
-            <Button
-                android:id="@+id/btnSave"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:text="Save Profile"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#0A0E2A"
-                android:backgroundTint="#00E5FF"/>
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/etSkills"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/input_height"
+                    android:background="@drawable/rounded_input_light"
+                    android:paddingStart="@dimen/input_padding_h"
+                    android:paddingEnd="@dimen/input_padding_h"
+                    android:textColor="?attr/primaryText"
+                    android:textColorHint="?attr/mutedText"
+                    android:hint="e.g. teaching, medical, driving"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="@dimen/spacing_xl"/>
+
+                <!-- Save button -->
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:text="Save profile"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"/>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 </ScrollView>

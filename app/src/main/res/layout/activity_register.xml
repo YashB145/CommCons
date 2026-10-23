@@ -2,81 +2,96 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0A0E2A">
+    android:background="?attr/screenBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="32dp">
+        android:padding="@dimen/spacing_lg">
 
+        <!-- Page header -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Join SevaLink"
-            android:textSize="32sp"
+            android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="#00E5FF"
+            android:fontFamily="serif"
+            android:textColor="@color/colorPrimary"
             android:layout_marginTop="40dp"
-            android:layout_marginBottom="4dp"/>
+            android:layout_marginBottom="6dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create your account to get started"
+            android:text="Create your account to get started."
             android:textSize="14sp"
-            android:textColor="#7986CB"
-            android:layout_marginBottom="36dp"/>
+            android:textColor="?attr/secondaryText"
+            android:layout_marginBottom="@dimen/spacing_xl"/>
 
+        <!-- Full Name -->
         <EditText
             android:id="@+id/etName"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:hint="Full Name"
-            android:textColor="#FFFFFF"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:background="#1A1F4A"
-            android:layout_marginBottom="16dp"/>
+            android:layout_height="@dimen/input_height"
+            android:hint="Full name"
+            android:textColor="?attr/primaryText"
+            android:textColorHint="?attr/mutedText"
+            android:textSize="15sp"
+            android:paddingStart="@dimen/input_padding_h"
+            android:paddingEnd="@dimen/input_padding_h"
+            android:background="@drawable/rounded_input_light"
+            android:layout_marginBottom="@dimen/spacing_md"/>
 
+        <!-- Email -->
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:hint="Email Address"
-            android:textColor="#FFFFFF"
+            android:layout_height="@dimen/input_height"
+            android:hint="Email address"
+            android:textColor="?attr/primaryText"
+            android:textColorHint="?attr/mutedText"
+            android:textSize="15sp"
             android:inputType="textEmailAddress"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:background="#1A1F4A"
-            android:layout_marginBottom="16dp"/>
+            android:paddingStart="@dimen/input_padding_h"
+            android:paddingEnd="@dimen/input_padding_h"
+            android:background="@drawable/rounded_input_light"
+            android:layout_marginBottom="@dimen/spacing_md"/>
 
+        <!-- Password -->
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="@dimen/input_height"
             android:hint="Password"
-            android:textColor="#FFFFFF"
+            android:textColor="?attr/primaryText"
+            android:textColorHint="?attr/mutedText"
+            android:textSize="15sp"
             android:inputType="textPassword"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:background="#1A1F4A"
-            android:layout_marginBottom="24dp"/>
+            android:paddingStart="@dimen/input_padding_h"
+            android:paddingEnd="@dimen/input_padding_h"
+            android:background="@drawable/rounded_input_light"
+            android:layout_marginBottom="@dimen/spacing_lg"/>
 
+        <!-- Role label -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="I am a..."
-            android:textSize="14sp"
-            android:textColor="#7986CB"
-            android:layout_marginBottom="12dp"/>
+            android:text="I am registering as"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textColor="?attr/secondaryText"
+            android:layout_marginBottom="@dimen/spacing_sm"/>
 
+        <!-- Role radio group -->
         <RadioGroup
             android:id="@+id/roleGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="28dp">
+            android:layout_marginBottom="@dimen/spacing_lg">
 
             <RadioButton
                 android:id="@+id/rbVolunteer"
@@ -84,12 +99,13 @@
                 android:layout_height="52dp"
                 android:layout_weight="1"
                 android:text="Volunteer"
-                android:textColor="#FFFFFF"
-                android:buttonTint="#00E5FF"
+                android:textColor="?attr/primaryText"
+                android:textSize="14sp"
+                android:buttonTint="@color/colorPrimary"
                 android:gravity="center_vertical"
-                android:layout_marginEnd="8dp"
-                android:paddingStart="12dp"
-                android:background="#1A1F4A"
+                android:layout_marginEnd="@dimen/spacing_sm"
+                android:paddingStart="@dimen/spacing_md"
+                android:background="@drawable/rounded_input_light"
                 android:checked="true"/>
 
             <RadioButton
@@ -98,41 +114,44 @@
                 android:layout_height="52dp"
                 android:layout_weight="1"
                 android:text="NGO"
-                android:textColor="#FFFFFF"
-                android:buttonTint="#00E5FF"
+                android:textColor="?attr/primaryText"
+                android:textSize="14sp"
+                android:buttonTint="@color/colorPrimary"
                 android:gravity="center_vertical"
-                android:paddingStart="12dp"
-                android:background="#1A1F4A"/>
+                android:paddingStart="@dimen/spacing_md"
+                android:background="@drawable/rounded_input_light"/>
         </RadioGroup>
 
+        <!-- Create Account -->
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="Create Account"
-            android:textSize="17sp"
+            android:layout_height="@dimen/button_height"
+            android:text="Create account"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#0A0E2A"
-            android:backgroundTint="#00E5FF"
-            android:layout_marginBottom="16dp"/>
+            android:textColor="@color/white"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_marginBottom="@dimen/spacing_md"/>
 
+        <!-- Already have account -->
         <Button
             android:id="@+id/btnGoToLogin"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="Already have an account? Sign In"
+            android:layout_height="@dimen/button_height"
+            android:text="Already have an account? Sign in"
             android:textSize="14sp"
-            android:textColor="#00E5FF"
-            android:backgroundTint="#1A1F4A"/>
+            android:textColor="@color/colorPrimary"
+            android:backgroundTint="@android:color/transparent"/>
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:visibility="gone"
-            android:indeterminateTint="#00E5FF"/>
+            android:layout_marginTop="@dimen/spacing_md"
+            android:indeterminateTint="@color/colorPrimary"
+            android:visibility="gone"/>
 
     </LinearLayout>
 </ScrollView>

@@ -1,25 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.CommCons" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">#1565C0</item>
-        <item name="colorPrimaryVariant">#0D47A1</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
-        <item name="colorSecondary">#00897B</item>
-        <item name="colorSecondaryVariant">#00695C</item>
-        <item name="colorOnSecondary">#FFFFFF</item>
-        <item name="android:statusBarColor">#1565C0</item>
 
-        <!-- Light theme custom attrs -->
-        <item name="screenBackground">#F5F5F5</item>
-        <item name="cardBackground">#FFFFFF</item>
-        <item name="headerBackground">#1565C0</item>
-        <item name="primaryText">#FFFFFF</item>
-        <item name="secondaryText">#BBDEFB</item>
-        <item name="accentCyan">#FFFFFF</item>
-        <item name="accentGreen">#FFFFFF</item>
-        <item name="accentOrange">#FFFFFF</item>
-        <item name="accentYellow">#FFFFFF</item>
-        <item name="buttonBackground">#1565C0</item>
+    <!-- ================================================================
+         Base Theme (Light)
+         ================================================================ -->
+    <style name="Theme.CommCons" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Material color roles -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+
+        <!-- System bars -->
+        <item name="android:statusBarColor">@color/sl_header_bg</item>
+        <item name="android:navigationBarColor">@color/sl_background</item>
+        <item name="android:windowBackground">@color/sl_background</item>
+
+        <!-- Custom semantic attrs (light values) -->
+        <item name="screenBackground">@color/sl_background</item>
+        <item name="cardBackground">@color/sl_surface</item>
+        <item name="headerBackground">@color/sl_header_bg</item>
+        <item name="primaryText">@color/sl_text_primary</item>
+        <item name="secondaryText">@color/sl_text_secondary</item>
+        <item name="mutedText">@color/sl_text_secondary</item>
+        <item name="strokeColor">@color/sl_stroke</item>
+
+        <!-- Legacy attr aliases (kept for compatibility) -->
+        <item name="accentCyan">@color/sl_accent_saffron</item>
+        <item name="accentGreen">@color/sl_accent_green</item>
+        <item name="accentOrange">@color/sl_accent_saffron</item>
+        <item name="accentYellow">@color/sl_accent_saffron</item>
+        <item name="buttonBackground">@color/sl_btn_primary</item>
         <item name="inputBackground">@drawable/rounded_input_light</item>
+
+        <!-- Priority chip attrs -->
+        <item name="chipPriorityHighBg">@color/sl_priority_high_bg</item>
+        <item name="chipPriorityHighText">@color/sl_priority_high</item>
+        <item name="chipPriorityMediumBg">@color/sl_priority_medium_bg</item>
+        <item name="chipPriorityMediumText">@color/sl_priority_medium</item>
+        <item name="chipPriorityLowBg">@color/sl_priority_low_bg</item>
+        <item name="chipPriorityLowText">@color/sl_priority_low</item>
     </style>
+
+    <!-- ================================================================
+         Widget Styles
+         ================================================================ -->
+
+    <!-- Primary Button -->
+    <style name="Widget.SevaLink.Button.Primary" parent="Widget.MaterialComponents.Button">
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="backgroundTint">@color/sl_btn_primary</item>
+        <item name="cornerRadius">@dimen/button_radius</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="elevation">0dp</item>
+        <item name="stateListAnimator">@null</item>
+    </style>
+
+    <!-- Secondary (outlined) Button -->
+    <style name="Widget.SevaLink.Button.Secondary" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="strokeColor">@color/colorPrimary</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cornerRadius">@dimen/button_radius</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="elevation">0dp</item>
+        <item name="stateListAnimator">@null</item>
+    </style>
+
+    <!-- Text-style Button (tap targets) -->
+    <style name="Widget.SevaLink.Button.Text" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="rippleColor">@color/sl_priority_low_bg</item>
+    </style>
+
+    <!-- Icon-only back button -->
+    <style name="Widget.SevaLink.Button.Back" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:minWidth">40dp</item>
+        <item name="android:minHeight">40dp</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="rippleColor">@color/sl_priority_low_bg</item>
+        <item name="elevation">0dp</item>
+        <item name="stateListAnimator">@null</item>
+    </style>
+
+    <!-- Card -->
+    <style name="Widget.SevaLink.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">@dimen/card_radius</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">@dimen/card_stroke</item>
+        <item name="strokeColor">@color/sl_stroke</item>
+        <item name="cardBackgroundColor">?attr/cardBackground</item>
+        <item name="android:layout_marginStart">@dimen/card_margin</item>
+        <item name="android:layout_marginEnd">@dimen/card_margin</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_sm</item>
+    </style>
+
+    <!-- Input field -->
+    <style name="Widget.SevaLink.Input" parent="">
+        <item name="android:background">@drawable/rounded_input_light</item>
+        <item name="android:paddingStart">@dimen/input_padding_h</item>
+        <item name="android:paddingEnd">@dimen/input_padding_h</item>
+        <item name="android:height">@dimen/input_height</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">?attr/primaryText</item>
+        <item name="android:textColorHint">?attr/mutedText</item>
+    </style>
+
+    <!-- ================================================================
+         Text Appearances
+         ================================================================ -->
+    <style name="TextAppearance.SevaLink.Display" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:textSize">@dimen/text_display</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/primaryText</item>
+        <item name="fontFamily">serif</item>
+    </style>
+
+    <style name="TextAppearance.SevaLink.Title" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/primaryText</item>
+        <item name="fontFamily">serif</item>
+    </style>
+
+    <style name="TextAppearance.SevaLink.SectionLabel" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">@dimen/text_label</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.1</item>
+        <item name="android:textColor">?attr/secondaryText</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextAppearance.SevaLink.Body" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textColor">?attr/primaryText</item>
+    </style>
+
+    <style name="TextAppearance.SevaLink.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">@dimen/text_caption</item>
+        <item name="android:textColor">?attr/secondaryText</item>
+    </style>
+
+    <!-- ================================================================
+         Priority Chip Styles
+         ================================================================ -->
+    <style name="Widget.SevaLink.Chip.Priority.Base" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="chipIconVisible">false</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="chipMinHeight">24dp</item>
+        <item name="android:paddingStart">@dimen/chip_padding_h</item>
+        <item name="android:paddingEnd">@dimen/chip_padding_h</item>
+        <item name="rippleColor">@android:color/transparent</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="Widget.SevaLink.Chip.Priority.High" parent="Widget.SevaLink.Chip.Priority.Base">
+        <item name="chipBackgroundColor">@color/sl_priority_high_bg</item>
+        <item name="android:textColor">@color/sl_priority_high</item>
+    </style>
+
+    <style name="Widget.SevaLink.Chip.Priority.Medium" parent="Widget.SevaLink.Chip.Priority.Base">
+        <item name="chipBackgroundColor">@color/sl_priority_medium_bg</item>
+        <item name="android:textColor">@color/sl_priority_medium</item>
+    </style>
+
+    <style name="Widget.SevaLink.Chip.Priority.Low" parent="Widget.SevaLink.Chip.Priority.Base">
+        <item name="chipBackgroundColor">@color/sl_priority_low_bg</item>
+        <item name="android:textColor">@color/sl_priority_low</item>
+    </style>
+
 </resources>

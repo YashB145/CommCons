@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0A0E2A"
+    android:background="?attr/screenBackground"
     android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <!-- HEADER -->
+        <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="24dp">
+            android:background="?attr/headerBackground"
+            android:paddingStart="@dimen/spacing_md"
+            android:paddingEnd="@dimen/spacing_md"
+            android:paddingTop="@dimen/spacing_md"
+            android:paddingBottom="@dimen/spacing_md">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -29,201 +32,434 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SevaLink Volunteer"
-                    android:textColor="#90CAF9"
-                    android:textSize="13sp" />
+                    android:text="Volunteer"
+                    android:textSize="12sp"
+                    android:textColor="@color/sl_text_on_primary"
+                    android:alpha="0.7"/>
 
                 <TextView
                     android:id="@+id/tvWelcome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Welcome!"
-                    android:textColor="#FFFFFF"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:text="Welcome"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="serif"
+                    android:textColor="@color/sl_text_on_primary"/>
             </LinearLayout>
 
             <Button
                 android:id="@+id/btnLogout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LOGOUT"
-                android:textColor="#FFFFFF"
+                android:layout_height="36dp"
+                android:text="Sign out"
                 android:textSize="12sp"
-                android:textStyle="bold"
-                android:backgroundTint="#0D47A1"
-                android:layout_marginEnd="6dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp" />
+                android:textColor="@color/sl_text_on_primary"
+                android:backgroundTint="@android:color/transparent"
+                android:alpha="0.8"
+                android:elevation="0dp"
+                android:stateListAnimator="@null"
+                android:layout_marginEnd="@dimen/spacing_xs"/>
 
-            <Button
+            <!-- Settings icon button -->
+            <ImageButton
                 android:id="@+id/btnSettings"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:text=""
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:backgroundTint="#0D47A1"
-                android:padding="0dp" />
+                android:layout_width="@dimen/icon_btn_size"
+                android:layout_height="@dimen/icon_btn_size"
+                android:src="@drawable/ic_settings"
+                android:tint="@color/sl_text_on_primary"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/spacing_sm"
+                android:contentDescription="Settings"/>
         </LinearLayout>
 
-        <!-- STATS CARDS -->
+        <!-- Stats row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="24dp">
+            android:paddingStart="@dimen/spacing_md"
+            android:paddingEnd="@dimen/spacing_md"
+            android:paddingTop="@dimen/spacing_lg"
+            android:paddingBottom="@dimen/spacing_md">
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:gravity="center"
-                android:background="#1A237E"
-                android:layout_marginEnd="8dp">
+                android:gravity="center_horizontal">
 
                 <TextView
                     android:id="@+id/tvTasksAvailable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textColor="#00E5FF"
-                    android:textSize="36sp"
-                    android:textStyle="bold" />
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:fontFamily="serif"
+                    android:textColor="@color/colorPrimary"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Available"
-                    android:textColor="#B0BEC5"
-                    android:textSize="14sp" />
+                    android:textSize="12sp"
+                    android:textColor="?attr/secondaryText"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:gravity="center"
-                android:background="#1A237E"
-                android:layout_marginStart="8dp">
+                android:gravity="center_horizontal">
 
                 <TextView
                     android:id="@+id/tvTasksAccepted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textColor="#69F0AE"
-                    android:textSize="36sp"
-                    android:textStyle="bold" />
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:fontFamily="serif"
+                    android:textColor="@color/sl_accent_saffron"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Accepted"
-                    android:textColor="#B0BEC5"
-                    android:textSize="14sp" />
+                    android:textSize="12sp"
+                    android:textColor="?attr/secondaryText"/>
             </LinearLayout>
         </LinearLayout>
 
-        <!-- QUICK ACTIONS LABEL -->
+        <!-- Hairline divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?attr/strokeColor"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:layout_marginEnd="@dimen/spacing_md"
+            android:layout_marginBottom="@dimen/spacing_md"/>
+
+        <!-- Section label -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="QUICK ACTIONS"
-            android:textColor="#90CAF9"
+            android:text="Actions"
             android:textSize="11sp"
             android:textStyle="bold"
-            android:letterSpacing="0.15"
-            android:layout_marginBottom="12dp" />
+            android:textAllCaps="true"
+            android:letterSpacing="0.1"
+            android:textColor="?attr/secondaryText"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:layout_marginBottom="@dimen/spacing_sm"/>
 
-        <!-- ROW 1: VIEW TASKS + MAP VIEW -->
+        <!-- View Tasks row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="8dp">
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/spacing_md"
+            android:paddingEnd="@dimen/spacing_md"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp">
 
-            <Button
-                android:id="@+id/btnViewTasks"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:text="VIEW TASKS"
-                android:textColor="#FFFFFF"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:backgroundTint="#1565C0" />
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:src="@drawable/ic_task_list"
+                android:tint="@color/colorPrimary"
+                android:layout_marginEnd="@dimen/spacing_md"/>
 
-            <Button
-                android:id="@+id/btnViewMap"
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="56dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="MAP VIEW"
-                android:textColor="#FFFFFF"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:backgroundTint="#1565C0" />
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnViewTasks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Browse tasks"
+                    android:textSize="15sp"
+                    android:textColor="?attr/primaryText"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:minHeight="0dp"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Find and accept open opportunities"
+                    android:textSize="12sp"
+                    android:textColor="?attr/secondaryText"/>
+            </LinearLayout>
         </LinearLayout>
 
-        <!-- ROW 2: CHAT + MY PROFILE -->
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="?attr/strokeColor" android:layout_marginStart="56dp"/>
+
+        <!-- Map View row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/spacing_md"
+            android:paddingEnd="@dimen/spacing_md"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp">
 
-            <Button
-                android:id="@+id/btnChat"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:text="CHAT"
-                android:textColor="#FFFFFF"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:backgroundTint="#1565C0" />
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:src="@drawable/ic_map"
+                android:tint="@color/colorPrimary"
+                android:layout_marginEnd="@dimen/spacing_md"/>
 
-            <Button
-                android:id="@+id/btnProfile"
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="56dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="MY PROFILE"
-                android:textColor="#FFFFFF"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:backgroundTint="#1565C0" />
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnViewMap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Map view"
+                    android:textSize="15sp"
+                    android:textColor="?attr/primaryText"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:minHeight="0dp"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="See tasks near you on a map"
+                    android:textSize="12sp"
+                    android:textColor="?attr/secondaryText"/>
+            </LinearLayout>
         </LinearLayout>
 
-        <!-- GEMINI SMART MATCH -->
-        <Button
-            android:id="@+id/btnSmartMatch"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginBottom="8dp"
-            android:text="GEMINI SMART MATCH"
-            android:textColor="#0A0E2A"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:backgroundTint="#00E5FF" />
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="?attr/strokeColor" android:layout_marginStart="56dp"/>
 
-        <!-- TASK HISTORY -->
-        <Button
-            android:id="@+id/btnHistory"
+        <!-- Chat row -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="TASK HISTORY"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:backgroundTint="#1A237E" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/spacing_md"
+            android:paddingEnd="@dimen/spacing_md"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:src="@drawable/ic_chat"
+                android:tint="@color/colorPrimary"
+                android:layout_marginEnd="@dimen/spacing_md"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnChat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Messages"
+                    android:textSize="15sp"
+                    android:textColor="?attr/primaryText"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:minHeight="0dp"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chat with NGOs and coordinators"
+                    android:textSize="12sp"
+                    android:textColor="?attr/secondaryText"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="?attr/strokeColor" android:layout_marginStart="56dp"/>
+
+        <!-- Profile row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/spacing_md"
+            android:paddingEnd="@dimen/spacing_md"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:src="@drawable/ic_profile"
+                android:tint="@color/colorPrimary"
+                android:layout_marginEnd="@dimen/spacing_md"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My profile"
+                    android:textSize="15sp"
+                    android:textColor="?attr/primaryText"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:minHeight="0dp"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit skills, bio and details"
+                    android:textSize="12sp"
+                    android:textColor="?attr/secondaryText"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="?attr/strokeColor" android:layout_marginStart="56dp"/>
+
+        <!-- Smart Match row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/spacing_md"
+            android:paddingEnd="@dimen/spacing_md"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:src="@drawable/ic_match"
+                android:tint="@color/sl_accent_saffron"
+                android:layout_marginEnd="@dimen/spacing_md"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnSmartMatch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Smart Match"
+                    android:textSize="15sp"
+                    android:textColor="?attr/primaryText"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:minHeight="0dp"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Find tasks matched to your skills"
+                    android:textSize="12sp"
+                    android:textColor="?attr/secondaryText"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="?attr/strokeColor" android:layout_marginStart="56dp"/>
+
+        <!-- History row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/spacing_md"
+            android:paddingEnd="@dimen/spacing_md"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:src="@drawable/ic_history"
+                android:tint="@color/colorPrimary"
+                android:layout_marginEnd="@dimen/spacing_md"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnHistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Task history"
+                    android:textSize="15sp"
+                    android:textColor="?attr/primaryText"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:minHeight="0dp"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tasks you have completed"
+                    android:textSize="12sp"
+                    android:textColor="?attr/secondaryText"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="@dimen/spacing_lg"/>
 
     </LinearLayout>
 </ScrollView>

@@ -39,7 +39,7 @@ class SettingsActivity : AppCompatActivity() {
 
             Toast.makeText(
                 this,
-                if (isChecked) "Dark mode enabled 🌙" else "Light mode enabled ☀️",
+                if (isChecked) "Dark mode enabled" else "Light mode enabled",
                 Toast.LENGTH_SHORT
             ).show()
         }

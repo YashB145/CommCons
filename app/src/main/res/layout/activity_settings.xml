@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="?android:windowBackground">
+    android:background="?attr/screenBackground">
 
     <!-- Header -->
     <LinearLayout
@@ -11,17 +12,21 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:background="?attr/colorPrimary"
-        android:padding="16dp">
+        android:background="?attr/headerBackground"
+        android:paddingStart="@dimen/spacing_sm"
+        android:paddingEnd="@dimen/spacing_md"
+        android:paddingTop="@dimen/spacing_sm"
+        android:paddingBottom="@dimen/spacing_sm">
 
-        <Button
+        <ImageButton
             android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="← Back"
-            android:textSize="12sp"
-            android:backgroundTint="@color/card"
-            android:textColor="#FFFFFF"/>
+            android:layout_width="@dimen/icon_btn_size"
+            android:layout_height="@dimen/icon_btn_size"
+            android:src="@drawable/ic_back"
+            android:tint="@color/sl_text_on_primary"
+            android:background="@android:color/transparent"
+            android:padding="@dimen/spacing_sm"
+            android:contentDescription="Back"/>
 
         <TextView
             android:layout_width="0dp"
@@ -30,32 +35,50 @@
             android:text="Settings"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:gravity="center"/>
+            android:textColor="@color/sl_text_on_primary"
+            android:layout_marginStart="@dimen/spacing_sm"/>
     </LinearLayout>
 
-    <!-- Dark Mode Card -->
-    <androidx.cardview.widget.CardView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <!-- Appearance section label -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Appearance"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:letterSpacing="0.1"
+        android:textColor="?attr/secondaryText"
+        android:layout_marginStart="@dimen/spacing_md"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:layout_marginBottom="@dimen/spacing_sm"/>
+
+    <!-- Dark mode card -->
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="4dp">
+        android:layout_marginStart="@dimen/spacing_md"
+        android:layout_marginEnd="@dimen/spacing_md"
+        app:cardCornerRadius="@dimen/card_radius"
+        app:cardElevation="0dp"
+        app:strokeWidth="@dimen/card_stroke"
+        app:strokeColor="?attr/strokeColor"
+        app:cardBackgroundColor="?attr/cardBackground">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:padding="20dp">
+            android:padding="@dimen/spacing_md">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🌙"
-                android:textSize="28sp"
-                android:layout_marginEnd="16dp"/>
+            <!-- Moon icon (replaces emoji) -->
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:src="@drawable/ic_dark_mode"
+                android:tint="?attr/secondaryText"
+                android:layout_marginEnd="@dimen/spacing_md"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -67,17 +90,17 @@
                     android:id="@+id/tvModeLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Light Mode"
+                    android:text="Light mode"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="?android:textColorPrimary"/>
+                    android:textColor="?attr/primaryText"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Toggle between light and dark theme"
                     android:textSize="12sp"
-                    android:textColor="?android:textColorSecondary"
+                    android:textColor="?attr/secondaryText"
                     android:layout_marginTop="2dp"/>
             </LinearLayout>
 
@@ -86,6 +109,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

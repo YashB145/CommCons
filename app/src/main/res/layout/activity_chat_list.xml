@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F5F5F5">
+    android:background="?attr/screenBackground">
 
     <!-- Header -->
     <LinearLayout
@@ -11,17 +11,21 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:background="#1565C0"
-        android:padding="16dp">
+        android:background="?attr/headerBackground"
+        android:paddingStart="@dimen/spacing_sm"
+        android:paddingEnd="@dimen/spacing_md"
+        android:paddingTop="@dimen/spacing_sm"
+        android:paddingBottom="@dimen/spacing_sm">
 
-        <Button
+        <ImageButton
             android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="← Back"
-            android:textSize="12sp"
-            android:backgroundTint="#0D47A1"
-            android:textColor="#FFFFFF"/>
+            android:layout_width="@dimen/icon_btn_size"
+            android:layout_height="@dimen/icon_btn_size"
+            android:src="@drawable/ic_back"
+            android:tint="@color/sl_text_on_primary"
+            android:background="@android:color/transparent"
+            android:padding="@dimen/spacing_sm"
+            android:contentDescription="Back"/>
 
         <TextView
             android:layout_width="0dp"
@@ -30,25 +34,26 @@
             android:text="Messages"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:gravity="center"/>
+            android:textColor="@color/sl_text_on_primary"
+            android:layout_marginStart="@dimen/spacing_sm"/>
     </LinearLayout>
 
     <TextView
         android:id="@+id/tvEmpty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No users found"
-        android:textColor="#888888"
-        android:textSize="16sp"
+        android:text="No conversations yet"
+        android:textColor="?attr/secondaryText"
+        android:textSize="15sp"
         android:gravity="center"
-        android:padding="32dp"
+        android:padding="@dimen/spacing_xl"
         android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvUsers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
+        android:paddingTop="@dimen/spacing_sm"
         android:clipToPadding="false"/>
+
 </LinearLayout>
