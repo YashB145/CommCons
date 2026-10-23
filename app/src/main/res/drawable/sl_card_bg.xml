@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- sl_card_bg: flat card background with hairline stroke -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="?attr/cardBackground"/>
+    <corners android:radius="@dimen/card_radius"/>
+    <stroke android:width="@dimen/card_stroke" android:color="?attr/strokeColor"/>
+</shape>
